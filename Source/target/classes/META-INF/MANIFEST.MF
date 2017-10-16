@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: springboot-shoppingcart
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Ga_En
+Implementation-Vendor-Id: com.ShoppingCart.Project
+Build-Jdk: 1.8.0_144
+Implementation-URL: http://projects.spring.io/spring-boot/springboot-s
+ hoppingcart/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
