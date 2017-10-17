@@ -11,7 +11,7 @@ import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.ObjectP
 
 
 @Controller
-public class UserController {
+public class TestController {
 	
 	private ObjectParserService ops = new ObjectParserService();
 	
