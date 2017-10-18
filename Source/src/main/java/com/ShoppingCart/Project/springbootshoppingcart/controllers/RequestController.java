@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTransactionInput;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.RequestHandler;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 
 
 @Controller
