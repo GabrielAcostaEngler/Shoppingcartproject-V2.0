@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class AuthorizeUserInput {
+public class AuthorizeTransactionInput {
 	
 	private String userId;
-	private String txAmount;
+	private Double txAmount;
 	private String txAmountCy;
 	private String txId;
 	private int txTypeId;
@@ -17,7 +17,7 @@ public class AuthorizeUserInput {
 	
 	//Constructor
 	
-	public AuthorizeUserInput(String input) throws Exception {
+	public AuthorizeTransactionInput(String input) throws Exception {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		
@@ -25,7 +25,7 @@ public class AuthorizeUserInput {
         JsonNode node = mapper.readValue(input, JsonNode.class);
 		
 		this.userId = node.get("userId").asText();
-		this.txAmount = node.get("txAmount").asText();
+		this.txAmount = node.get("txAmount").asDouble();
 		this.txAmountCy = node.get("txAmountCy").asText();
 		this.txId = node.get("txId").asText();
 		this.txTypeId = node.get("txTypeId").asInt();
@@ -42,7 +42,7 @@ public class AuthorizeUserInput {
 
 
 
-	public String getTxAmount() {
+	public Double getTxAmount() {
 		return txAmount;
 	}
 
@@ -88,7 +88,7 @@ public class AuthorizeUserInput {
 
 
 
-	public void setTxAmount(String txAmount) {
+	public void setTxAmount(Double txAmount) {
 		this.txAmount = txAmount;
 	}
 

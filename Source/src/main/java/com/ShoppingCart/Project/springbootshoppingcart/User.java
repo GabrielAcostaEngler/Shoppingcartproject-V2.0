@@ -14,13 +14,13 @@ public class User {
 	private String email;
 	private String dob;
 	private String mobile;
-	private Number balance;
+	private Double balance;
 	private String balanceCy;
 	private String locale;
 	
 	//constructor
 	public User(String userId, boolean success, String firstName, String lastName, String street, String city,
-			String zip, String country, String email, String dob, String mobile, Number balance, String balanceCy,
+			String zip, String country, String email, String dob, String mobile, Double balance, String balanceCy,
 			String locale) {
 		super();
 		this.userId = userId;
@@ -102,7 +102,7 @@ public class User {
 	}
 
 
-	public Number getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
@@ -119,9 +119,16 @@ public class User {
 	
 
 	//Setters
+	
+	
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 

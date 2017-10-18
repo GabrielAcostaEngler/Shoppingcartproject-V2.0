@@ -16,7 +16,7 @@ public class TestController {
 	private ObjectParserService ops = new ObjectParserService();
 	
 	
-	User testuser = new User("1",true,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",100,"SEK","SV_SE");
+	User testuser = new User("1",true,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",100.00,"SEK","SV_SE");
 
 	
 	@RequestMapping(value="/api/testuser", method = RequestMethod.GET)

@@ -5,18 +5,18 @@ package com.ShoppingCart.Project.springbootshoppingcart.httpClientService;
 
 
 
-import org.json.JSONException;
+/*import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.ShoppingCart.Project.springbootshoppingcart.User;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+*/
 
 
 public class ResponseParserService {
-	
+/*	
 	ObjectMapper mapper = new ObjectMapper();
 	ObjectParserService ops;
 	String jsonResponse;
@@ -46,5 +46,5 @@ public class ResponseParserService {
 		return response;
 		
 	}
-	
+	*/
 }
