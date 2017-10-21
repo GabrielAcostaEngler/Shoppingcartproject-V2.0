@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class AuthorizeTransactionInput {
+public class AuthorizeTxInput {
 	
 	private String userId;
 	private Double txAmount;
@@ -17,7 +17,7 @@ public class AuthorizeTransactionInput {
 	
 	//Constructor
 	
-	public AuthorizeTransactionInput(String input) throws Exception {
+	public AuthorizeTxInput(String input) throws Exception {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		

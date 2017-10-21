@@ -1,12 +1,12 @@
 package com.ShoppingCart.Project.springbootshoppingcart.httpClientService;
 
-
-
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTransactionInput;
+import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.TransferTxUtility;
 import com.ShoppingCart.Project.springbootshoppingcart.User;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 
@@ -18,8 +18,9 @@ import com.google.gson.JsonObject;
 public class RequestHandler {
 	
 	User testuser = new User(
-			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",100.0,"SEK","SV_SE");
+			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.0,"SEK","SV_SE");
 	
+	  
 	public RequestHandler(){
 		
 	}
@@ -54,7 +55,7 @@ public class RequestHandler {
 		}
 	}
 	
-	public String authorizeTransactionHandler(AuthorizeTransactionInput indata) {
+	public String authorizeTxHandler(AuthorizeTxInput indata) {
 		
 		String response;
 		
@@ -88,4 +89,78 @@ public class RequestHandler {
 			return response;
 		}			
 	}
+	
+	public String transferTxHandler(TransferTxUtility indata) {
+		
+		String response;
+		Double balanceAfterTransaction;
+		
+		if(indata.getUserId().equals(testuser.getUserId()) && indata.getTxAmountCy().equals(testuser.getBalanceCy())) {
+			
+			balanceAfterTransaction = testuser.getBalance() + indata.getTxAmount();
+			testuser.setBalance(balanceAfterTransaction);
+			
+			UUID merchantTxId = UUID.randomUUID();
+			JsonObject jsonobj = new JsonObject();
+			
+			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("Success", true);
+			jsonobj.addProperty("txId", indata.getTxId());
+			jsonobj.addProperty("merchantTxId", merchantTxId.toString() );
+			jsonobj.addProperty("userBalance", testuser.getBalance());
+			
+			response = new Gson().toJson(jsonobj);
+			
+			return response;
+			
+			
+		}else {
+			
+			JsonObject jsonobj = new JsonObject();
+			
+			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("Success", false);
+			jsonobj.addProperty("txId", indata.getTxId());
+			jsonobj.addProperty("errMsg", "Transfer was not Successful");
+			
+			response = new Gson().toJson(jsonobj);
+			
+			return response;
+			
+			
+		}
+		
+	}
+	
+	public String cancelTxHandler(CancelTxInput indata) {
+		
+		String response;
+		
+		if(indata.getUserId().equals(testuser.getUserId())) {
+			
+			JsonObject jsonobj = new JsonObject();
+			
+			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("Success", true);
+			
+			response = new Gson().toJson(jsonobj);
+			
+			return response;
+			
+		}else {
+			
+			
+			JsonObject jsonobj = new JsonObject();
+			
+			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("Success", false);
+			jsonobj.addProperty("errMsg", "Error");
+			
+			response = new Gson().toJson(jsonobj);
+			
+			return response;
+		}
+		
+	}
+	
 }

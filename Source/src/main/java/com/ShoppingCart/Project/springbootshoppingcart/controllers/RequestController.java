@@ -1,6 +1,5 @@
 package com.ShoppingCart.Project.springbootshoppingcart.controllers;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTransactionInput;
+import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.TransferTxUtility;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.RequestHandler;
 
@@ -39,9 +40,9 @@ public class RequestController {
 			return;
 		
 		} catch (Exception e) {
-		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-		e.printStackTrace();
-		return;
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return;
 		}
 		
 	}
@@ -49,24 +50,66 @@ public class RequestController {
 	
 	@RequestMapping(value="/authorize", method = RequestMethod.POST)
 	@ResponseBody
-	public void authorizeUser(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
+	public void authorizeTx(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			AuthorizeTransactionInput authorizeTransactionInput = new AuthorizeTransactionInput(indata);
-			String authorizeTransactionResponse = rh.authorizeTransactionHandler(authorizeTransactionInput);
+			AuthorizeTxInput authorizeTxInput = new AuthorizeTxInput(indata);
+			String authorizeTxResponse = rh.authorizeTxHandler(authorizeTxInput);
 			
 			response.setStatus(HttpServletResponse.SC_OK);
-			response.getWriter().write(authorizeTransactionResponse);
-			
+			response.getWriter().write(authorizeTxResponse);
 			
 			return;
-			
 			
 		} catch(Exception e){
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
 			return;
 		}
+		
 	}
 	
+	
+	@RequestMapping(value = "/transfer", method = RequestMethod.POST)
+	@ResponseBody
+	public void transferTx(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			TransferTxUtility transferTxinput = new TransferTxUtility(indata);
+			String transferTxResponse = rh.transferTxHandler(transferTxinput);
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().write(transferTxResponse);
+			
+			return;
+			
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return;
+		}
+		
+	}
+	
+	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
+	@ResponseBody
+	public void cancelTx(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			CancelTxInput cancelTxInput = new CancelTxInput(indata);
+			String cancelTxResponse = rh.cancelTxHandler(cancelTxInput);
+			
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().write(cancelTxResponse);
+			
+			return;
+			
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return;
+		}
+		
+	}
 	
 }
