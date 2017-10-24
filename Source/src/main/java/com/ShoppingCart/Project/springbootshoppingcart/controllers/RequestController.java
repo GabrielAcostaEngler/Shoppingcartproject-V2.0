@@ -14,7 +14,7 @@ import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.TransferTxUtility;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
-import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.RequestHandler;
+import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.ResponseHandler;
 
 
 
@@ -22,7 +22,7 @@ import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.Request
 public class RequestController {
 
 	@Autowired
-	private RequestHandler rh;
+	private ResponseHandler rh;
 	
 	
 

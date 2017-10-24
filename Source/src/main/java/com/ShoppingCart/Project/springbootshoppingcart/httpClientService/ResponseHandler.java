@@ -15,13 +15,13 @@ import com.google.gson.JsonObject;
 
 
 @Component
-public class RequestHandler {
+public class ResponseHandler {
 	
 	User testuser = new User(
 			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.0,"SEK","SV_SE");
 	
 	  
-	public RequestHandler(){
+	public ResponseHandler(){
 		
 	}
 	

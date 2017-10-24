@@ -20,7 +20,7 @@ public class User {
 	
 	//constructor
 	public User(String userId, boolean success, String firstName, String lastName, String street, String city,
-			String zip, String country, String email, String dob, String mobile, Double balance, String balanceCy,
+			String zip, String country, String email, String dob, String mobile, double balance, String balanceCy,
 			String locale) {
 		super();
 		this.userId = userId;
@@ -102,7 +102,7 @@ public class User {
 	}
 
 
-	public Double getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
@@ -120,10 +120,8 @@ public class User {
 
 	//Setters
 	
-	
-
-	public void setSuccess(boolean success) {
-		this.success = success;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 
@@ -132,6 +130,73 @@ public class User {
 	}
 
 
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+
+	public void setBalanceCy(String balanceCy) {
+		this.balanceCy = balanceCy;
+	}
+
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	
+	
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", sessionId=" + sessionId + ", success=" + success + ", firstName="
@@ -139,6 +204,8 @@ public class User {
 				+ ", country=" + country + ", email=" + email + ", dob=" + dob + ", mobile=" + mobile + ", balance="
 				+ balance + ", balanceCy=" + balanceCy + ", locale=" + locale + "]";
 	}
+
+
 	
 	
 	
