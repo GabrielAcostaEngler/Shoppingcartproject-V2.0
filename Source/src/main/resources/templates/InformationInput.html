@@ -16,22 +16,22 @@
 	<body>
 	
 		<div class="container">
-			<form action="" method="post">
+			<form th:action="@{/submitinput}" th:object=${NetellerTxInput} method="post">
 				 <div class="form-group">
 		    		<label for="inputAmount">Amount</label>
-		    		<input type="text" class="form-control" id="inputAmount" aria-describedby="amountHelp" placeholder="Enter amount">
+		    		<input type="text" th:field="*{amount}" class="form-control" id="inputAmount" aria-describedby="amountHelp" placeholder="Enter amount">
 		 		 </div>
 		 		 <div class="form-group">
 		    		<label for="inputAccount">account</label>
-		    		<input type="text" class="form-control" id="inputAccount" placeholder="Enter account">
+		    		<input type="text" th:field="*{account}" class="form-control" id="inputAccount" placeholder="Enter account">
 		  		</div>
 		  		<div class="form-group">
 		    		<label for="inputSecureId">secureid</label>
-		    		<input type="text" class="form-control" id="inputSecureId" placeholder="Enter secureid">
+		    		<input type="text" th:field="*{secureId}" class="form-control" id="inputSecureId" placeholder="Enter secureid">
 		  		</div>
 		  		<div class="form-group">
 		    		<label for="inputBonusCode">bonuscode</label>
-		    		<input type="text" class="form-control" id="inputBonusCode" placeholder="Enter bonuscode">
+		    		<input type="text" th:field="*{bonusCode}" class="form-control" id="inputBonusCode" placeholder="Enter bonuscode">
 		    		<small>(Optional)</small>
 		  		</div>
 				<button type="submit" class="btn btn-primary">Submit</button>

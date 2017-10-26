@@ -1,28 +1,27 @@
-package com.ShoppingCart.Project.springbootshoppingcart.httpClientService;
+package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.User;
-import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
-
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 
 @Component
-public class ResponseHandler {
+public class PiqResponseHandler {
 	
-	RequestValidator rv = new RequestValidator();
-	User testuser = new User(
+	PiqCallbackValidator rv = new PiqCallbackValidator();
+	public static User testuser = new User(
 			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.0,"SEK","SV_SE");
 	
 	  
-	public ResponseHandler(){
+	public PiqResponseHandler(){
 		
 	}
 	
@@ -33,7 +32,7 @@ public class ResponseHandler {
 		testuser.setSessionId("2");
 		String response;
 		
-		if(rv.validateVerifyUserRequest(testuser, indata) == true) {
+		if(rv.validateVerifyUserRequest(testuser, indata)) {
 			
 			testuser.setSuccess(true);
 			response = new Gson().toJson(testuser);
@@ -60,7 +59,9 @@ public class ResponseHandler {
 		
 		String response;
 		
-		if(rv.validateAutorizeTxRequest(testuser, indata) == true) {
+		if(rv.validateAutorizeTxRequest(testuser, indata)) {
+			
+	
 			
 			
 			UUID authCode = UUID.randomUUID();		
@@ -96,7 +97,7 @@ public class ResponseHandler {
 		String response;
 		Double balanceAfterTransaction;
 		
-		if(rv.validateTransferTxRequest(testuser, indata) == true) {
+		if(rv.validateTransferTxRequest(testuser, indata)) {
 			
 			balanceAfterTransaction = testuser.getBalance() + indata.getTxAmount();
 			testuser.setBalance(balanceAfterTransaction);
@@ -137,7 +138,7 @@ public class ResponseHandler {
 		
 		String response;
 		
-		if(rv.validateCancelTxRequest(testuser, indata) == true) {
+		if(rv.validateCancelTxRequest(testuser, indata)) {
 			
 			JsonObject jsonobj = new JsonObject();
 			

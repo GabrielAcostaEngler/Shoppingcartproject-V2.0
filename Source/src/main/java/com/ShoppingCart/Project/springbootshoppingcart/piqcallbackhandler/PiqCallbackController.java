@@ -1,4 +1,4 @@
-package com.ShoppingCart.Project.springbootshoppingcart.controllers;
+package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TransferTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
-import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.ResponseHandler;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
 
 
 @RequestMapping("/paymentiq")
 @Controller
-public class RequestController {
+public class PiqCallbackController {
 
 	@Autowired
-	private ResponseHandler rh;
+	private PiqResponseHandler rh;
 	
 	
 

@@ -1,12 +1,12 @@
-package com.ShoppingCart.Project.springbootshoppingcart.httpClientService;
+package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
-import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.User;
-import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
 
-public class RequestValidator {
+public class PiqCallbackValidator {
 	
 	
 	public boolean validateVerifyUserRequest(User user, VerifyUserInput indata) {
