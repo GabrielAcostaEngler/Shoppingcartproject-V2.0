@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TransferTxUtility;
+import com.ShoppingCart.Project.springbootshoppingcart.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.User;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 
@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 @Component
 public class ResponseHandler {
 	
+	RequestValidator rv = new RequestValidator();
 	User testuser = new User(
 			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.0,"SEK","SV_SE");
 	
@@ -32,7 +33,7 @@ public class ResponseHandler {
 		testuser.setSessionId("2");
 		String response;
 		
-		if(indata.getSessionId().equals(testuser.getSessionId()) && indata.getUserId().equals(testuser.getUserId())) {
+		if(rv.validateVerifyUserRequest(testuser, indata) == true) {
 			
 			testuser.setSuccess(true);
 			response = new Gson().toJson(testuser);
@@ -59,7 +60,7 @@ public class ResponseHandler {
 		
 		String response;
 		
-		if(indata.getUserId().equals(testuser.getUserId()) && indata.getTxAmount() <= testuser.getBalance()) {
+		if(rv.validateAutorizeTxRequest(testuser, indata) == true) {
 			
 			
 			UUID authCode = UUID.randomUUID();		
@@ -90,12 +91,12 @@ public class ResponseHandler {
 		}			
 	}
 	
-	public String transferTxHandler(TransferTxUtility indata) {
+	public String transferTxHandler(TransferTxInput indata) {
 		
 		String response;
 		Double balanceAfterTransaction;
 		
-		if(indata.getUserId().equals(testuser.getUserId()) && indata.getTxAmountCy().equals(testuser.getBalanceCy())) {
+		if(rv.validateTransferTxRequest(testuser, indata) == true) {
 			
 			balanceAfterTransaction = testuser.getBalance() + indata.getTxAmount();
 			testuser.setBalance(balanceAfterTransaction);
@@ -136,7 +137,7 @@ public class ResponseHandler {
 		
 		String response;
 		
-		if(indata.getUserId().equals(testuser.getUserId())) {
+		if(rv.validateCancelTxRequest(testuser, indata) == true) {
 			
 			JsonObject jsonobj = new JsonObject();
 			

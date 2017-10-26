@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class TransferTxUtility {
+public class TransferTxInput {
 
 	String userId;
 	String authCode;
@@ -24,7 +24,7 @@ public class TransferTxUtility {
 	
 	//Constructor
 	
-	public TransferTxUtility(String input) throws Exception {
+	public TransferTxInput(String input) throws Exception {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		

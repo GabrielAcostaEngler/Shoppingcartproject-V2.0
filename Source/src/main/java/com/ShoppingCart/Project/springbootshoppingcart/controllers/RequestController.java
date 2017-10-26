@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ShoppingCart.Project.springbootshoppingcart.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.CancelTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TransferTxUtility;
+import com.ShoppingCart.Project.springbootshoppingcart.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.VerifyUserInput;
 import com.ShoppingCart.Project.springbootshoppingcart.httpClientService.ResponseHandler;
 
 
-
+@RequestMapping("/paymentiq")
 @Controller
 public class RequestController {
 
@@ -75,7 +75,7 @@ public class RequestController {
 	public void transferTx(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			TransferTxUtility transferTxinput = new TransferTxUtility(indata);
+			TransferTxInput transferTxinput = new TransferTxInput(indata);
 			String transferTxResponse = rh.transferTxHandler(transferTxinput);
 			
 			response.setStatus(HttpServletResponse.SC_OK);

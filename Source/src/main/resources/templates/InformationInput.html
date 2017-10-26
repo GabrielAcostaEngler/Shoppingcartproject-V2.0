@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+	<head>
+		<title>Shopping cart</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+		<link 	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+				rel="stylesheet" Media="screen"/>
+			
+    	<script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	
+	</head>
+	<body>
+	
+		<div class="container">
+			<form action="" method="post">
+				 <div class="form-group">
+		    		<label for="inputAmount">Amount</label>
+		    		<input type="text" class="form-control" id="inputAmount" aria-describedby="amountHelp" placeholder="Enter amount">
+		 		 </div>
+		 		 <div class="form-group">
+		    		<label for="inputAccount">account</label>
+		    		<input type="text" class="form-control" id="inputAccount" placeholder="Enter account">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="inputSecureId">secureid</label>
+		    		<input type="text" class="form-control" id="inputSecureId" placeholder="Enter secureid">
+		  		</div>
+		  		<div class="form-group">
+		    		<label for="inputBonusCode">bonuscode</label>
+		    		<input type="text" class="form-control" id="inputBonusCode" placeholder="Enter bonuscode">
+		    		<small>(Optional)</small>
+		  		</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	
+	</body>
+
+</html>
