@@ -1,42 +1,34 @@
 package com.ShoppingCart.Project.springbootshoppingcart.shoppingcartappcontroller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
 
 @Controller
 public class ViewController {
 
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView informationInputMapping (ModelAndView modelAndView,NetellerTxInput inputData) {
-		
-		
-		
-		
-		return modelAndView;
-	}
-	
-	
-	
-	@RequestMapping(value = "/submitinput", method = RequestMethod.POST)
-	public String informationInput(Model model) {
-		
-		
-		
-		model.addAttribute("NetellerTxInput", new NetellerTxInput());
+	@GetMapping("/submitinput")
+	public String informationInputMapping(Model model) {
 
-		return "InformationInput";
+		model.addAttribute("netellerTxInput", new NetellerTxInput());
+
+		return "submitinput";
 	}
 
-	
-	
-	
-	
+	@PostMapping("/submitinput")
+	public String informationInput(@ModelAttribute NetellerTxInput netellerTxInput) {
+		
+
+		netellerTxInput.setUserId("1");
+		netellerTxInput.setSessionId("2");
+		netellerTxInput.setMerchantId("1992");
+		
+		return "result";
+	}
+
 }

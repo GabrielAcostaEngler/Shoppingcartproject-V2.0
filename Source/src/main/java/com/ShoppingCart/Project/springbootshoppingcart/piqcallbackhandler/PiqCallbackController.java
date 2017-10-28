@@ -26,14 +26,15 @@ public class PiqCallbackController {
 	
 	
 
-	@RequestMapping(value= "/verifyuser", method = RequestMethod.POST)
+	@RequestMapping(value= "/verifyuser", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public void verifyUser(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
 			VerifyUserInput verifyUserInput = new VerifyUserInput(indata);
 			String verifyUserResponse = rh.verifyUserHandler(verifyUserInput);
-				
+			
+			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.getWriter().write(verifyUserResponse);
 			
@@ -56,6 +57,7 @@ public class PiqCallbackController {
 			AuthorizeTxInput authorizeTxInput = new AuthorizeTxInput(indata);
 			String authorizeTxResponse = rh.authorizeTxHandler(authorizeTxInput);
 			
+			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.getWriter().write(authorizeTxResponse);
 			
@@ -78,6 +80,7 @@ public class PiqCallbackController {
 			TransferTxInput transferTxinput = new TransferTxInput(indata);
 			String transferTxResponse = rh.transferTxHandler(transferTxinput);
 			
+			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.getWriter().write(transferTxResponse);
 			

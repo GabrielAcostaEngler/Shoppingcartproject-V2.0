@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+	<head>
+		<title>Shopping cart</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+		<link 	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+				rel="stylesheet" Media="screen"/>
+			
+    	<script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	
+	</head>
+	<body>
+			<h1>Result</h1>
+	    <p th:text="'amount: ' + ${netellerTxInput.amount}" />
+	    <p th:text="'account: ' + ${netellerTxInput.account}" />
+	    <p th:text="'userid: ' + ${netellerTxInput.userId}" />
+	    <p th:text="'sessionid: ' + ${netellerTxInput.sessionId}" />
+	    <a href="/submitinput">Submit another payment</a>
+	
+	</body>
+
+</html>

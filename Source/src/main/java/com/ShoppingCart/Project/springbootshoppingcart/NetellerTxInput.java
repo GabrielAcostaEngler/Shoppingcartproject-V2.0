@@ -3,88 +3,88 @@ package com.ShoppingCart.Project.springbootshoppingcart;
 public class NetellerTxInput {
 
 	// attributes
-	private String Sessionid;
-	private String userid;
-	private String merchantid;
+	private String sessionId;
+	private String userId;
+	private String merchantId;
 	private String amount;
-	private String bonuscode;
+	private String bonusCode;
 	private String account;
-	private String accountid;
-	private String secureid;
+	private String accountId;
+	private String secureId;
 	// Constructor
 
 
 	// Getters
-	public String getSessionid() {
-		return Sessionid;
+	public String getSessionId() {
+		return sessionId;
 	}
 
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
 
-	public String getMerchantid() {
-		return merchantid;
+	public String getMerchantId() {
+		return merchantId;
 	}
 
 	public String getAmount() {
 		return amount;
 	}
 
-	public String getBonuscode() {
-		return bonuscode;
+	public String getBonusCode() {
+		return bonusCode;
 	}
 
 	public String getAccount() {
 		return account;
 	}
 
-	public String getAccountid() {
-		return accountid;
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public String getSecureid() {
-		return secureid;
+	public String getSecureId() {
+		return secureId;
 	}
 
 	// Setters
-	public void setSessionid(String sessionid) {
-		Sessionid = sessionid;
+	public void setSessionId(String sessionid) {
+		sessionId = sessionid;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userid) {
+		this.userId = userid;
 	}
 
-	public void setMerchantid(String merchantid) {
-		this.merchantid = merchantid;
+	public void setMerchantId(String merchantid) {
+		this.merchantId = merchantid;
 	}
 
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public void setBonuscode(String bonuscode) {
-		this.bonuscode = bonuscode;
+	public void setBonusCode(String bonuscode) {
+		this.bonusCode = bonuscode;
 	}
 
 	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	public void setAccountid(String accountid) {
-		this.accountid = accountid;
+	public void setAccountId(String accountid) {
+		this.accountId = accountid;
 	}
 
-	public void setSecureid(String secureid) {
-		this.secureid = secureid;
+	public void setSecureId(String secureid) {
+		this.secureId = secureid;
 	}
 
 	@Override
 	public String toString() {
-		return "Neteller [Sessionid=" + Sessionid + ", userid=" + userid + ", merchantid=" + merchantid + ", amount="
-				+ amount + ", bonuscode=" + bonuscode + ", account=" + account + ", accountid=" + accountid
-				+ ", secureid=" + secureid + "]";
+		return "Neteller [Sessionid=" + sessionId + ", userid=" + userId + ", merchantid=" + merchantId + ", amount="
+				+ amount + ", bonuscode=" + bonusCode + ", account=" + account + ", accountid=" + accountId
+				+ ", secureid=" + secureId + "]";
 	}
 
 }

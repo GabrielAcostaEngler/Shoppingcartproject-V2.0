@@ -18,7 +18,7 @@ public class PiqResponseHandler {
 	
 	PiqCallbackValidator rv = new PiqCallbackValidator();
 	public static User testuser = new User(
-			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.0,"SEK","SV_SE");
+			"1",false,"Gabriel","Acosta","Stnbrohultsvgn","uppsala","75758","swe","ga@hotmail.com","1992-10-06","0767105222",1000.00,"SEK","SV_SE");
 	
 	  
 	public PiqResponseHandler(){
