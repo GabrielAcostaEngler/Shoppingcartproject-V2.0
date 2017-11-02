@@ -8,18 +8,22 @@
 		<link 	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
 				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
 				rel="stylesheet" Media="screen"/>
-			
-    	<script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
-            	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 	
 	</head>
 	<body>
+		<div class ="container">
 			<h1>Result</h1>
-	    <p th:text="'amount: ' + ${netellerTxInput.amount}" />
-	    <p th:text="'account: ' + ${netellerTxInput.account}" />
-	    <p th:text="'userid: ' + ${netellerTxInput.userId}" />
-	    <p th:text="'sessionid: ' + ${netellerTxInput.sessionId}" />
-	    <a href="/submitinput">Submit another payment</a>
+			<p th:text="'amount: ' + ${netellerTxInput.amount}" />
+		    <p th:text="'account: ' + ${netellerTxInput.account}" />
+		    <p th:text="'userid: ' + ${netellerTxInput.userId}" />
+		    <p th:text="'sessionid: ' + ${netellerTxInput.sessionId}" />
+		    <a class="btn btn-primary" href="/submitinput" role="button">Submit a new payment</a>
+		</div>
+	    
+	    
+	    
+      	<script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+         	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 	
 	</body>
 
