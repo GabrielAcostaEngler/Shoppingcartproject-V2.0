@@ -21,6 +21,18 @@ import com.google.gson.Gson;
 
 @Controller
 public class ViewController {
+	
+	
+	@GetMapping("/register")
+	public String registerUserPage() {
+		return "register";
+	}
+	
+	@GetMapping("/")
+	public String homePage() {
+		return "index";
+	}
+	
 
 	@GetMapping("/submitinput")
 	public String informationInputMapping(Model model) {
