@@ -3,6 +3,7 @@
 
 
 body {
+	
     font-family: 'Raleway', sans-serif;
     margin: 0;
 }
@@ -19,15 +20,8 @@ a:hover {
 }
 
 
-.highlighter {
-    transition: 0.5s linear;
-}
-.highlighter:hover {
-    background-color: rgb(110, 182, 51);
-}
 
-
-.container {
+.registerform, .loginform , .netellerdepositform , .result {
     margin: 50px;
     display: flex;
     flex-direction: column;
@@ -51,19 +45,20 @@ button:hover {
         background-color: rgb(110, 182, 51);
 }
 
-input {
+
+.logininput, .registerinput, .netellerdepositinput {
     border: none;
     border-bottom: 3px solid black;
     transition: 0.3s linear;
+    margin: 25px 0;
+    width: 25%;
 }
 
-input:focus {
+.logininput:focus, .registerinput:focus, .netellerdepositinput:focus {
     outline: none;
     transform: scale(1.2);
     border-bottom: 3px solid rgb(110, 182, 51);
 }
-
-
 
 nav {
     display: flex;

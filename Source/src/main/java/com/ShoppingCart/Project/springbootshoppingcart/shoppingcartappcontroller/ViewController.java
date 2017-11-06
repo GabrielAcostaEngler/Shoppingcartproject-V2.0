@@ -12,9 +12,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
 import com.google.gson.Gson;
@@ -22,28 +22,37 @@ import com.google.gson.Gson;
 @Controller
 public class ViewController {
 	
-	
-	@GetMapping("/register")
-	public String registerUserPage() {
-		return "register";
+	@RequestMapping(value="/welcome", method = RequestMethod.GET)
+	public String userloggedInPage() {
+		return "userloggedin";
 	}
 	
-	@GetMapping("/")
+	@RequestMapping(value="/login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "loginpage";
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.GET)
+	public String registerUserPage() {
+		return "registerpage";
+	}
+	
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String homePage() {
 		return "index";
 	}
 	
 
-	@GetMapping("/submitinput")
+	@RequestMapping(value="/netellerdeposit", method = RequestMethod.GET)
 	public String informationInputMapping(Model model) {
 
 		model.addAttribute("netellerTxInput", new NetellerTxInput());
 
-		return "submitinput";
+		return "netellerdepositform";
 	}
 
-	@PostMapping("/submitinput")
-	public String informationInput(@ModelAttribute NetellerTxInput netellerTxInput) {
+	@RequestMapping(value="/netellerdeposit", method = RequestMethod.POST)
+	public String netellerDepositRequest(@ModelAttribute NetellerTxInput netellerTxInput) {
 
 		String piqUrl = "https://test-api.paymentiq.io/paymentiq/api/neteller/deposit/process";
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+	<head>
+		<title>Shopping cart</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+		<link 	href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+				rel="stylesheet" Media="screen"/>
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+	
+	</head>
+	<body>
+		<nav>
+			<div>
+		 		<a href="/">Home</a>
+		 		<a href="#">About</a>
+		 		<a href="#">Contact</a>
+			</div>
+			
+			<div>
+		 		<a href="/netellerdeposit">Deposit</a>
+		 		<a href="#">Withdraw</a>
+		    </div>
+		</nav>
+			
+				<form action="#" th:action="@{/netellerdeposit}" th:object=${netellerTxInput} method="post">
+					<div class="netellerdepositform">
+			    		<input type="text" th:field="*{amount}" class="netellerdepositinput" id="inputAmount"  placeholder="Enter amount">
+			    		<input type="text" th:field="*{account}" class="netellerdepositinput" id="inputAccount" placeholder="Enter account">
+			    		<input type="text" th:field="*{secureId}" class="netellerdepositinput" id="inputSecureId" placeholder="Enter secureid">
+			    		<input type="text" th:field="*{bonusCode}" class="netellerdepositinput" id="inputBonusCode" placeholder="Enter bonuscode (Optional)">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+
+
+	
+	    	<script src="https://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	</body>
+
+</html>
