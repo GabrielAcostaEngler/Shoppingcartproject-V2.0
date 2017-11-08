@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
 import com.google.gson.Gson;
 
 @Controller
@@ -62,7 +63,7 @@ public class ViewController {
 			postRequest.setHeader("accept", "application/json");
 			postRequest.setHeader("content-type", "application/json");
 			
-			netellerTxInput.setUserId("1");
+			netellerTxInput.setUserId(PiqResponseHandler.testuser.getUserId());
 			netellerTxInput.setSessionId("2");
 			netellerTxInput.setMerchantId("1992");
 			

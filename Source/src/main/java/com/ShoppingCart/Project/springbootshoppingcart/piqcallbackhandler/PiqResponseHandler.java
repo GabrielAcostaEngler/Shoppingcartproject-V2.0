@@ -16,8 +16,8 @@ import com.google.gson.JsonObject;
 public class PiqResponseHandler {
 
 	PiqCallbackValidator rv = new PiqCallbackValidator();
-	public static User testuser = new User("1", false, "Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
-			"ga@hotmail.com", "1992-10-06", "0767105222", 1000.00, "SEK", "SV_SE");
+	public static User testuser = new User("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
+			"ga@hotmail.com","password", "1992-10-06", "0767105222", 1000.00, "SEK", "SV_SE");
 
 	public PiqResponseHandler() {
 
@@ -30,8 +30,24 @@ public class PiqResponseHandler {
 
 		if (rv.validateVerifyUserRequest(testuser, indata)) {
 
-			testuser.setSuccess(true);
-			response = new Gson().toJson(testuser);
+			JsonObject jsonobj = new JsonObject();
+			
+			jsonobj.addProperty("userId",testuser.getUserId());
+			jsonobj.addProperty("success",true);
+			jsonobj.addProperty("firstname",testuser.getFirstName());
+			jsonobj.addProperty("lastName",testuser.getLastName());
+			jsonobj.addProperty("street",testuser.getStreet());
+			jsonobj.addProperty("city",testuser.getCity());
+			jsonobj.addProperty("zip",testuser.getZip());
+			jsonobj.addProperty("country",testuser.getCountry());
+			jsonobj.addProperty("email",testuser.getEmail());
+			jsonobj.addProperty("dob",testuser.getDob());
+			jsonobj.addProperty("mobile",testuser.getMobile());
+			jsonobj.addProperty("balance",testuser.getBalance());
+			jsonobj.addProperty("balanceCy",testuser.getBalanceCy());
+			jsonobj.addProperty("locale",testuser.getLocale());
+			
+			response = new Gson().toJson(jsonobj);
 
 			return response;
 

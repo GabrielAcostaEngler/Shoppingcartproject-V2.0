@@ -1,10 +1,11 @@
 package com.ShoppingCart.Project.springbootshoppingcart;
 
+import java.util.UUID;
+
 public class User {
 	
 	private String userId;
 	private String sessionId;
-	private boolean success;
 	private String firstName;
 	private String lastName;
 	private String street;
@@ -12,6 +13,7 @@ public class User {
 	private String zip;
 	private String country;
 	private String email;
+	private String password;
 	private String dob;
 	private String mobile;
 	private Double balance;
@@ -19,12 +21,13 @@ public class User {
 	private String locale;
 	
 	//constructor
-	public User(String userId, boolean success, String firstName, String lastName, String street, String city,
-			String zip, String country, String email, String dob, String mobile, double balance, String balanceCy,
+	public User(String firstName, String lastName, String street, String city,
+			String zip, String country, String email,String password, String dob, String mobile, double balance, String balanceCy,
 			String locale) {
-		super();
-		this.userId = userId;
-		this.success = success;
+		
+		UUID userIdConstructor = UUID.randomUUID();
+		
+		this.userId = userIdConstructor.toString();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.street = street;
@@ -32,6 +35,7 @@ public class User {
 		this.zip = zip;
 		this.country = country;
 		this.email = email;
+		this.password = password;
 		this.dob = dob;
 		this.mobile = mobile;
 		this.balance = balance;
@@ -49,11 +53,6 @@ public class User {
 
 	public String getSessionId() {
 		return sessionId;
-	}
-
-
-	public boolean isSuccess() {
-		return success;
 	}
 
 
@@ -89,6 +88,10 @@ public class User {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 
 
@@ -130,11 +133,6 @@ public class User {
 	}
 
 
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
-
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -168,6 +166,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setPassword (String password) {
+		this.password = password;
+	}
 
 
 	public void setDob(String dob) {
@@ -199,7 +201,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", sessionId=" + sessionId + ", success=" + success + ", firstName="
+		return "User [userId=" + userId + ", sessionId=" + sessionId + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", street=" + street + ", city=" + city + ", zip=" + zip
 				+ ", country=" + country + ", email=" + email + ", dob=" + dob + ", mobile=" + mobile + ", balance="
 				+ balance + ", balanceCy=" + balanceCy + ", locale=" + locale + "]";
