@@ -38,6 +38,16 @@ public class ViewController {
 		return "registerpage";
 	}
 	
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	public String registerUserRequest() {
+		
+		
+		
+		
+		return "";
+		
+	}
+	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String homePage() {
 		return "index";
