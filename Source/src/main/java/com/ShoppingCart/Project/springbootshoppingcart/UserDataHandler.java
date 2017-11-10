@@ -4,7 +4,10 @@ public class UserDataHandler {
 
 	
 	
-	/*public User registerUserHandler() {}*/
+public void registerUserHandler() {
+	
+	
+}
 	
 	
 	
