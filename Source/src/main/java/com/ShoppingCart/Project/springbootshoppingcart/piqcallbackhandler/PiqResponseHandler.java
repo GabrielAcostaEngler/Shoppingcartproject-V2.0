@@ -17,7 +17,7 @@ public class PiqResponseHandler {
 
 	PiqCallbackValidator rv = new PiqCallbackValidator();
 	public static User testuser = new User("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
-			"ga@hotmail.com","password", "1992-10-06", "0767105222", 1000.00, "SEK", "SV_SE");
+			"ga@hotmail.com","password", "1992-10-06", "0767105222");
 
 	public PiqResponseHandler() {
 
@@ -25,6 +25,7 @@ public class PiqResponseHandler {
 
 	public String verifyUserHandler(VerifyUserInput indata) {
 
+	
 		testuser.setSessionId("2");
 		String response;
 
@@ -45,7 +46,6 @@ public class PiqResponseHandler {
 			jsonobj.addProperty("mobile",testuser.getMobile());
 			jsonobj.addProperty("balance",testuser.getBalance());
 			jsonobj.addProperty("balanceCy",testuser.getBalanceCy());
-			jsonobj.addProperty("locale",testuser.getLocale());
 			
 			response = new Gson().toJson(jsonobj);
 

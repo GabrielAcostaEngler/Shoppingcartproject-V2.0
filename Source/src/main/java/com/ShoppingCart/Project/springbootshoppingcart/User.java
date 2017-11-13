@@ -18,14 +18,14 @@ public class User {
 	private String mobile;
 	private Double balance;
 	private String balanceCy;
-	private String locale;
 	
 	//constructor
 	public User(String firstName, String lastName, String street, String city,
-			String zip, String country, String email,String password, String dob, String mobile, double balance, String balanceCy,
-			String locale) {
+			String zip, String country, String email,String password, String dob, String mobile) {
 		
 		UUID userIdConstructor = UUID.randomUUID();
+		double startingBalance = 500.00;
+		String standardBalanceCy = "SEK";
 		
 		this.userId = userIdConstructor.toString();
 		this.firstName = firstName;
@@ -38,9 +38,8 @@ public class User {
 		this.password = password;
 		this.dob = dob;
 		this.mobile = mobile;
-		this.balance = balance;
-		this.balanceCy = balanceCy;
-		this.locale = locale;
+		this.balance = startingBalance;
+		this.balanceCy = standardBalanceCy;
 	}
 	
 	
@@ -113,12 +112,6 @@ public class User {
 	public String getBalanceCy() {
 		return balanceCy;
 	}
-
-
-	public String getLocale() {
-		return locale;
-	}
-	
 	
 
 	//Setters
@@ -190,12 +183,6 @@ public class User {
 	public void setBalanceCy(String balanceCy) {
 		this.balanceCy = balanceCy;
 	}
-
-
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
-
 	
 	
 
@@ -204,7 +191,7 @@ public class User {
 		return "User [userId=" + userId + ", sessionId=" + sessionId + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", street=" + street + ", city=" + city + ", zip=" + zip
 				+ ", country=" + country + ", email=" + email + ", dob=" + dob + ", mobile=" + mobile + ", balance="
-				+ balance + ", balanceCy=" + balanceCy + ", locale=" + locale + "]";
+				+ balance + ", balanceCy=" + balanceCy+ "]";
 	}
 
 

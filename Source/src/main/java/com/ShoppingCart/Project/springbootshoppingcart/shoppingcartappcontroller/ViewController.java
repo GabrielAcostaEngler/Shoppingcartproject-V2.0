@@ -17,11 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
+import com.ShoppingCart.Project.springbootshoppingcart.User;
+import com.ShoppingCart.Project.springbootshoppingcart.MockDBHandler;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
 import com.google.gson.Gson;
 
 @Controller
 public class ViewController {
+	
+	MockDBHandler usd = new MockDBHandler();
+	
+	
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public String homePage() {
+		return "index";
+	}
 	
 	@RequestMapping(value="/welcome", method = RequestMethod.GET)
 	public String userloggedInPage() {
@@ -33,24 +43,36 @@ public class ViewController {
 		return "loginpage";
 	}
 	
+	
+	
+	
+	//-----------------------------------------
+	
+	@RequestMapping(value="/registeredusers", method = RequestMethod.GET)
+	public String listedUsersPage(Model model) {
+		
+		model.addAttribute("list",usd.mockDB.getRegisteredUsers().toString());
+		
+		return"registeredusers";
+	}
+	
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public String registerUserPage() {
+	public String registerUserPage(Model model) {
+		
+		model.addAttribute("user", new User(null, null, null, null, null, null, null, null, null, null));
+		
 		return "registerpage";
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String registerUserRequest() {
+	public String registerUserRequest(@ModelAttribute User user ) {
 		
+		usd.userRegistrationHandler(user);
 		
+		System.out.println(user.toString());
 		
+		return "registeredusers";
 		
-		return "";
-		
-	}
-	
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String homePage() {
-		return "index";
 	}
 	
 
@@ -73,7 +95,7 @@ public class ViewController {
 			postRequest.setHeader("accept", "application/json");
 			postRequest.setHeader("content-type", "application/json");
 			
-			netellerTxInput.setUserId(PiqResponseHandler.testuser.getUserId());
+			netellerTxInput.setUserId(PiqResponseHandler.testuser.getUserId().toString());
 			netellerTxInput.setSessionId("2");
 			netellerTxInput.setMerchantId("1992");
 			
