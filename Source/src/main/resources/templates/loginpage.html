@@ -24,16 +24,15 @@
 		    </div>
 		</nav>
 		
-		<form>
+		<form action="#" th:action="@{/login}" method="post">
+			
 	        <div class="loginform">
-	            <input class="logininput" placeholder="E-mail" type="text">
-	            <input class="logininput" placeholder="password"type="password">
-	            <a href="/welcome">Log In</a>
+	            <input class="logininput" name="email" placeholder="E-mail" type="text">
+	            <input class="logininput" name="password" placeholder="password"type="password">
+	            <button type="submit">Sign In</button>
 	        </div>
     	</form>
 	   
-      	<script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
-         	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 	</body>
 
 </html>
