@@ -38,13 +38,6 @@ public class ViewController {
 		return "userloggedin";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String loginPage() {
-		return "loginpage";
-	}
-	
-	
-	
 	
 	//-----------------------------------------
 	
