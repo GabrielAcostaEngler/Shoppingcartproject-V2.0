@@ -11,18 +11,7 @@
 	</head>
 	<body>
 	
-		<nav>
-			<div>
-		 		<a href="/">Home</a>
-		 		<a href="#">About</a>
-		 		<a href="#">Contact</a>		
-			</div>
-		    
-		    <div>
-		        <a href="/login">Log in</a>
-		        <a href="/register">Register</a>
-		    </div> 
-		</nav>
+		<div th:replace="fragments/header :: header"></div>
 	   
 	   
 	   <ul>
@@ -30,7 +19,9 @@
 	        <span th:text="${item}">Default</span>
 	    </li>
 		</ul>
-	   
+		
+	   <script type = "text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 	</body>
+	
 
 </html>

@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
-<head>
-	<title>Shopping Cart</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
- 	<link 	href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
-			th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-			rel="stylesheet" Media="screen"/>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
-</head>
+	<head>
+		<title>Shopping Cart</title>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	 	<link 	href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+				rel="stylesheet" Media="screen"/>
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+	</head>
 
-<body>
-    <nav>
-        <div>
-            <a href="/">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </div>
-        <div>
-            <a href="/login">Log in</a>
-            <a href="/register">Register</a>
-        </div>
-    </nav>
-    <form action="#" th:action="@{/register}" th:object=${user} method="post">
-        <div class="registerform">
-            <input class="registerinput" th:field="*{firstName}" id="inputFirstName" placeholder="First name" type="text">
-            <input class="registerinput" th:field="*{lastName}"  id="inputLastName" placeholder="Last name" type="text">
-            <input class="registerinput" th:field="*{street}" id="inputStreet" placeholder="Street" type="text">
-            <input class="registerinput" th:field="*{city}" id="inputCity" placeholder="City" type="text">
-            <input class="registerinput" th:field="*{zip}" id="inputZip" placeholder="Zip code" type="text">
-            <input class="registerinput" th:field="*{country}" id="inputCountry" placeholder="Country" type="text">
-            <input class="registerinput" th:field="*{email}" id="inputEmail" placeholder="E-mail" type="text">
-            <input class="registerinput" th:field="*{password}" id="inputPassword" placeholder="password" type="password">
-            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="text">
-            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text">
-            
-            <button type= "submit">Submit</button>
-        </div>
-    </form>
-
-</body>
+	<body>
+	
+		<div th:replace="fragments/header :: header"></div>
+	
+	
+	    <form action="#" th:action="@{/register}" th:object=${user} method="post">
+	        <div class="registerform">
+	            <input class="registerinput" th:field="*{firstName}" id="inputFirstName" placeholder="First name" type="text">
+	            <input class="registerinput" th:field="*{lastName}"  id="inputLastName" placeholder="Last name" type="text">
+	            <input class="registerinput" th:field="*{street}" id="inputStreet" placeholder="Street" type="text">
+	            <input class="registerinput" th:field="*{city}" id="inputCity" placeholder="City" type="text">
+	            <input class="registerinput" th:field="*{zip}" id="inputZip" placeholder="Zip code" type="text">
+	            <input class="registerinput" th:field="*{country}" id="inputCountry" placeholder="Country" type="text">
+	            <input class="registerinput" th:field="*{email}" id="inputEmail" placeholder="E-mail" type="text">
+	            <input class="registerinput" th:field="*{password}" id="inputPassword" placeholder="password" type="password">
+	            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="text">
+	            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text">
+	            
+	            <button type= "submit">Submit</button>
+	        </div>
+	    </form>
+		
+		<script type = "text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	</body>
 
 </html>

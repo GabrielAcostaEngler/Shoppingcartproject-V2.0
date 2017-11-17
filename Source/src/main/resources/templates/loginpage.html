@@ -11,22 +11,14 @@
 	</head>
 	<body>
 	
-		<nav>
-			<div>
-		 		<a href="/">Home</a>
-		 		<a href="#">About</a>
-		 		<a href="#">Contact</a>
-			</div>
-		    
-		    <div>
-		        <a href="/login">Log in</a>
-		        <a href="/register">Register</a>
-		    </div>
-		</nav>
+	<div th:replace="fragments/header :: header"></div>
 		
 		<form action="#" th:action="@{/login}" method="post">
 			
 	        <div class="loginform">
+       			<div class="login-error" th:if="${param.error}">
+					<span>username or password is incorrect!</span> 
+				</div>
 	            <input class="logininput" name="email" placeholder="E-mail" type="text">
 	            <input class="logininput" name="password" placeholder="password"type="password">
 	            <button type="submit">Sign In</button>
@@ -34,5 +26,6 @@
     	</form>
 	   
 	</body>
+	
 
 </html>

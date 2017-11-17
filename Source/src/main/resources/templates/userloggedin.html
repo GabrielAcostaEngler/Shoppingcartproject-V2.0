@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http//www.thymeleaf.org">
+<html xmlns:th="http//www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 	<head>
 		<title>Shopping Cart</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,24 +9,15 @@
 				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
 				rel="stylesheet" Media="screen"/>
 		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+		<script type = "text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 	
 	</head>
 	<body>
-	
-		<nav>
-			<div>
-		 		<a href="/">Home</a>
-		 		<a href="#">About</a>
-		 		<a href="#">Contact</a>	
-			</div>
+		
+		
+		<div th:replace="fragments/header :: header"></div>
 		    
-		    <div>
-		 		<a href="/netellerdeposit">Deposit</a>
-		 		<a href="#">Withdraw</a>
-		    </div>
-		    
-		</nav>
-	   
 	</body>
+	
 
 </html>

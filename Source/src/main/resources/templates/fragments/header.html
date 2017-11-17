@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+		<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+				rel="stylesheet" Media="screen"/>
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+		
+	</head>
+	<body>
+	
+	<div th:fragment="header">
+		<nav>
+			<div>
+				<span sec:authorize="!isAuthenticated()">
+				<a href="/">Home</a>
+		 		<a href="#">About</a>
+		 		<a href="#">Contact</a>	
+			    </span>
+			    
+				<span sec:authorize="isAuthenticated()">
+				<a href="/welcome">Home</a>
+		 		<a href="#">About</a>
+		 		<a href="#">Contact</a>	
+			    </span>
+			</div>
+		    
+		    <div>
+			    <span sec:authorize="!isAuthenticated()">
+			    	<a href="/login">Log in</a>
+			    	<a href="/register">Register</a>
+			    </span>
+			   <span sec:authorize="isAuthenticated()">
+			    	<a href="javascript:$('#logoutForm').submit();">Log Out</a>
+			 		<a href="/netellerdeposit">Deposit</a>
+			 		<a href="#">Withdraw</a>
+			   </span>
+		    </div> 
+		</nav>
+		
+			<form id="logoutForm" th:action="@{/logout}" method="post">
+	            
+	        </form>
+	</div>
+	
+	</body>
+	
+	<script type = "text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+
+</html>
