@@ -101,6 +101,7 @@ public class PiqCallbackController {
 	public void cancelTx(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
+			response.setContentType("application/json");
 			CancelTxInput cancelTxInput = new CancelTxInput(indata);
 			String cancelTxResponse = rh.cancelTxHandler(cancelTxInput);
 			
