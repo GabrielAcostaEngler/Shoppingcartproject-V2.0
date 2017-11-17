@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers(
-						"/")
+						"/","/register")
 				.permitAll()
 				.antMatchers(
 					"/css/*",
@@ -31,8 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login")
 				.usernameParameter("email")
 				.passwordParameter("password")
-				.defaultSuccessUrl("/")
-				.permitAll();
+				.defaultSuccessUrl("/welcome")
+				.permitAll()
+				.and()
+			.logout()
+			.permitAll()
+			.logoutSuccessUrl("/login");
 		
 		//@formatter:on
 
