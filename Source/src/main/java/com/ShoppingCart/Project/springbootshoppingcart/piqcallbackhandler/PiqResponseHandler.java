@@ -35,7 +35,7 @@ public class PiqResponseHandler {
 			
 			jsonobj.addProperty("userId",testuser.getUserId());
 			jsonobj.addProperty("success",true);
-			jsonobj.addProperty("firstname",testuser.getFirstName());
+			jsonobj.addProperty("firstName",testuser.getFirstName());
 			jsonobj.addProperty("lastName",testuser.getLastName());
 			jsonobj.addProperty("street",testuser.getStreet());
 			jsonobj.addProperty("city",testuser.getCity());
