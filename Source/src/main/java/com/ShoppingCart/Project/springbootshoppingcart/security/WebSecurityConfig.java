@@ -2,6 +2,7 @@ package com.ShoppingCart.Project.springbootshoppingcart.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,24 +20,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers(
-						"/","/register")
+					"/",
+					"/register")
 				.permitAll()
 				.antMatchers(
 					"/css/*",
-					"/img/*").permitAll()
+					"/img/*")
+				.permitAll()
+				.antMatchers(HttpMethod.POST,
+					"/paymentiq/**")
+				.permitAll()
 			.anyRequest()
 				.authenticated()
-				.and()
+			.and()
 			.formLogin()
 				.loginPage("/login")
 				.usernameParameter("email")
 				.passwordParameter("password")
 				.defaultSuccessUrl("/welcome")
 				.permitAll()
-				.and()
+			.and()
 			.logout()
-			.permitAll()
-			.logoutSuccessUrl("/login");
+				.permitAll()
+				.logoutSuccessUrl("/login");
+		http.csrf().disable();
 		
 		//@formatter:on
 
