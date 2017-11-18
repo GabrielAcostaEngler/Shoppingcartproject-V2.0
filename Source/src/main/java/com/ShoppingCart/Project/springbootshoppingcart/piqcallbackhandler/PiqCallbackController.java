@@ -25,8 +25,8 @@ public class PiqCallbackController {
 	private PiqResponseHandler rh;
 	
 	
-
-	@RequestMapping(value= "/verifyuser", method = RequestMethod.POST, produces = "application/json")
+	
+	@RequestMapping(value= "/verifyuser", method = RequestMethod.POST)
 	@ResponseBody
 	public void verifyUser(@RequestBody String indata, HttpServletRequest request, HttpServletResponse response) {
 		
