@@ -6,7 +6,7 @@
 		<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
 				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
 				rel="stylesheet" Media="screen"/>
-				<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
 				
 		
 	
@@ -14,7 +14,24 @@
 	<body>
 	
 		<div th:replace="fragments/header :: header"></div>
-	   
+		
+		
+		<div class=container>
+			<div class="jumbotron">
+			  <h1 class="display-3">Hello, world!</h1>
+			  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+			  <hr class="my-4">
+			  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			  <p class="lead">
+			    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			  </p>
+			</div>
+		</div>
+
+	   <script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous"></script>
 	</body>
 
 </html>
