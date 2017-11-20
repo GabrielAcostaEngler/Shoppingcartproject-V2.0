@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.ShoppingCart.Project.springbootshoppingcart.User;
+import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 public class PiqResponseHandler {
 
 	PiqCallbackValidator rv = new PiqCallbackValidator();
-	public static User testuser = new User("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
+	public static TUser testuser = new TUser("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
 			"ga@hotmail.com","password", "1992-10-06", "0767105222");
 
 	public PiqResponseHandler() {

@@ -5,9 +5,9 @@ public class UserRegistrationValidator {
 	
 	
 	
-	public boolean validateUserEmailReg(User reguser, MockDBHandler udh) {
+	public boolean validateUserEmailReg(TUser reguser, MockDBHandler udh) {
 		
-		for(User i : udh.mockDB.getRegisteredUsers()) {
+		for(TUser i : udh.mockDB.getRegisteredUsers()) {
 			if(i.getEmail().equals(reguser.getEmail())) {
 				
 				return false;

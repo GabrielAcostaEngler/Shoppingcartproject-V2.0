@@ -2,7 +2,7 @@ package com.ShoppingCart.Project.springbootshoppingcart;
 
 import java.util.UUID;
 
-public class User {
+public class TUser {
 	
 	private String userId;
 	private String sessionId;
@@ -20,7 +20,7 @@ public class User {
 	private String balanceCy;
 	
 	//constructor
-	public User(String firstName, String lastName, String street, String city,
+	public TUser(String firstName, String lastName, String street, String city,
 			String zip, String country, String email,String password, String dob, String mobile) {
 		
 		UUID userIdConstructor = UUID.randomUUID();

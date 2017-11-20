@@ -1,6 +1,6 @@
 package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
-import com.ShoppingCart.Project.springbootshoppingcart.User;
+import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -9,7 +9,7 @@ import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callba
 public class PiqCallbackValidator {
 	
 	
-	public boolean validateVerifyUserRequest(User user, VerifyUserInput indata) {
+	public boolean validateVerifyUserRequest(TUser user, VerifyUserInput indata) {
 		
 		if(indata.getSessionId().equals(user.getSessionId()) && indata.getUserId().equals(user.getUserId())) {
 			
@@ -23,7 +23,7 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateAutorizeTxRequest(User user, AuthorizeTxInput indata) {
+	public boolean validateAutorizeTxRequest(TUser user, AuthorizeTxInput indata) {
 		
 		if(indata.getUserId().equals(user.getUserId()) && indata.getTxAmount() <= user.getBalance()) {
 			
@@ -37,7 +37,7 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateTransferTxRequest(User user, TransferTxInput indata) {
+	public boolean validateTransferTxRequest(TUser user, TransferTxInput indata) {
 		
 		if(indata.getUserId().equals(user.getUserId()) && indata.getTxAmountCy().equals(user.getBalanceCy())) {
 			
@@ -51,7 +51,7 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateCancelTxRequest(User user, CancelTxInput indata) {
+	public boolean validateCancelTxRequest(TUser user, CancelTxInput indata) {
 		
 		if(indata.getUserId().equals(user.getUserId())) {
 			
