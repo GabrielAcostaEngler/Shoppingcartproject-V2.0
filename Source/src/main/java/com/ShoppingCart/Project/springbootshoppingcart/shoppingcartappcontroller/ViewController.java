@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.User;
+import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.MockDBHandler;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
 import com.google.gson.Gson;
@@ -33,9 +33,14 @@ public class ViewController {
 		return "index";
 	}
 	
-	@RequestMapping(value="/welcome", method = RequestMethod.GET)
-	public String userloggedInPage() {
-		return "userloggedin";
+	@RequestMapping(value="/about", method = RequestMethod.GET)
+	public String about() {
+		return "about";
+	}
+	
+	@RequestMapping(value="/contact", method = RequestMethod.GET)
+	public String contact() {
+		return "contact";
 	}
 	
 	
@@ -52,13 +57,13 @@ public class ViewController {
 	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public String registerUserPage(Model model) {
 		
-		model.addAttribute("user", new User(null, null, null, null, null, null, null, null, null, null));
+		model.addAttribute("user", new TUser(null, null, null, null, null, null, null, null, null, null));
 		
 		return "registerpage";
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String registerUserRequest(@ModelAttribute User user ) {
+	public String registerUserRequest(@ModelAttribute TUser user ) {
 		
 		usd.userRegistrationHandler(user);
 		

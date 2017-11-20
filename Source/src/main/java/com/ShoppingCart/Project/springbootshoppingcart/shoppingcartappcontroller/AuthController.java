@@ -9,7 +9,7 @@ public class AuthController {
 
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
-	String admin() {
+	String userLogin() {
 		
 		return "loginpage";
 	}

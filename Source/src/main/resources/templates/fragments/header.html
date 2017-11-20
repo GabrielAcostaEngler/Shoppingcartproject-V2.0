@@ -1,40 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-		<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
-				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-				rel="stylesheet" Media="screen"/>
-		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
+<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="https://www.w3.org">
+	<head th:fragment="head-css">
 		
+			<title>Shopping Cart</title>
+			
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+			<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
+					th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+					rel="stylesheet" Media="screen"/>
+			<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
 	</head>
 	<body>
 	
 		<div th:fragment="header">
 			<nav>
 				<div>
-					<span sec:authorize="!isAuthenticated()">
-						<a href="/">Home</a>
-				 		<a href="#">About</a>
-				 		<a href="#">Contact</a>	
-				    </span>
-				    
-					<span sec:authorize="isAuthenticated()">
-						<a href="/welcome">Home</a>
-				 		<a href="#">About</a>
-				 		<a href="#">Contact</a>	
-				    </span>
+					<a th:href="@{/}">Home</a>
+			 		<a th:href="@{/about}">About</a>
+			 		<a th:href="@{/contact}">Contact</a>
 				</div>
 			    
 			    <div>
 				    <span sec:authorize="!isAuthenticated()">
-				    	<a href="/login">Log in</a>
-				    	<a href="/register">Register</a>
+				    	<a th:href="@{/login}">Log in</a>
+				    	<a th:href="@{/register}">Register</a>
 				    </span>
+				    
 				   <span sec:authorize="isAuthenticated()">
-				    	<a href="javascript:$('#logoutForm').submit();">Log Out</a>
-				 		<a href="/netellerdeposit">Deposit</a>
+				    	<a th:href="@{javascript:$('#logoutForm').submit();}">Log out</a>
+				 		<a th:href="@{/netellerdeposit}">Deposit</a>
 				 		<a href="#">Withdraw</a>
 				   </span>
 			    </div> 
@@ -45,9 +40,9 @@
 		        </form>
 		</div>
 		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		  crossorigin="anonymous"></script>
+		<div th:fragment="footer">
+			<script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+		</div>
 	</body>
 	
 

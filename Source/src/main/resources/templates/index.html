@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http//www.thymeleaf.org">
-	<head>
-		<title>Shopping Cart</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
-				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-				rel="stylesheet" Media="screen"/>
-		<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
-				
-		
+<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+	<head th:replace="fragments/header :: head-css"></head>
 	
-	</head>
 	<body>
-	
 		<div th:replace="fragments/header :: header"></div>
 		
-		
-		<div class=container>
-			<div class="jumbotron">
-			  <h1 class="display-3">Hello, world!</h1>
-			  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-			  <hr class="my-4">
-			  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-			  <p class="lead">
-			    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-			  </p>
+			<div class=container sec:authorize="!isAuthenticated()">
+				<div class="jumbotron">
+				  <h1 class="display-3">Welcome to demo shopping cart!</h1>
+				  <p class="lead">This is a simple demo used for testing the integration with PaymentIQ.</p>
+				  <hr class="my-4">
+				  <p>To test a payment you have to register an account and log in.</p>
+				  <p class="lead">
+				    <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+				  </p>
+				</div>
 			</div>
-		</div>
 
-	   <script
-		  src="https://code.jquery.com/jquery-3.2.1.min.js"
-		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		  crossorigin="anonymous"></script>
+		
+		<div th:replace="fragments/header :: footer"></div>
 	</body>
 
 </html>

@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
-	<head>
-		<title>Shopping Cart</title>
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	 	<link 	href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css" 
-				th:ref="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
-				rel="stylesheet" Media="screen"/>
-	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}">
-	</head>
+
+	<head th:replace="fragments/header :: head-css"></head>
 
 	<body>
-	
 		<div th:replace="fragments/header :: header"></div>
 	
 	
@@ -27,15 +18,13 @@
 	            <input class="registerinput" th:field="*{email}" id="inputEmail" placeholder="E-mail" type="text">
 	            <input class="registerinput" th:field="*{password}" id="inputPassword" placeholder="password" type="password">
 	            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="text">
-	            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text">
-	            
+	            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text"> 
 	            <button type= "submit">Submit</button>
 	        </div>
 	    </form>
 		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		  crossorigin="anonymous"></script>
+
+		<div th:replace="fragments/header :: footer"></div>
 	</body>
 
 </html>
