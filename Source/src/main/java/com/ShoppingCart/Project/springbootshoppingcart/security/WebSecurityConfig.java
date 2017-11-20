@@ -8,10 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.ShoppingCart.Project.springbootshoppingcart.UserService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	UserService userService;
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -21,7 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(
 					"/",
-					"/register")
+					"/register",
+					"/about",
+					"/contact",
+					"/h2/**")
 				.permitAll()
 				.antMatchers(
 					"/css/*",
@@ -37,13 +46,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login")
 				.usernameParameter("email")
 				.passwordParameter("password")
-				.defaultSuccessUrl("/welcome")
+				.defaultSuccessUrl("/")
 				.permitAll()
 			.and()
 			.logout()
 				.permitAll()
 				.logoutSuccessUrl("/login");
 		http.csrf().disable();
+		http.headers().frameOptions().disable();
 		
 		//@formatter:on
 
@@ -60,5 +70,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//@formatter:on
 	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.userDetailsService(userService);
+	}
+	
+	
 
 }

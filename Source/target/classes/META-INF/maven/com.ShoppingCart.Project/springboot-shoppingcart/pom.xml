@@ -24,7 +24,15 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<!-- START OF DEPENDENCIES -->
+	
 	<dependencies>
+		
+		<!-- spring dependencies -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,6 +60,8 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		
+		
+		<!-- other dependencies -->
 		<dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
@@ -79,14 +89,25 @@
 			<artifactId>httpclient</artifactId>
 		</dependency>
 		
+		
+		<!-- webjars -->
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
 		    <version>3.3.7</version>
 		</dependency>
 		
+		<!-- embedded DB -->
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+		
 	</dependencies>
 
+    <!-- END OF DEPENDENCIES -->
+    
 	<build>
 		<plugins>
 			<plugin>
