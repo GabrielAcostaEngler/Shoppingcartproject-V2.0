@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.antMatchers(
 					"/css/*",
-					"/img/*")
+					"/img/*",
+					"/js/**")
 				.permitAll()
 				.antMatchers(HttpMethod.POST,
 					"/paymentiq/**")
