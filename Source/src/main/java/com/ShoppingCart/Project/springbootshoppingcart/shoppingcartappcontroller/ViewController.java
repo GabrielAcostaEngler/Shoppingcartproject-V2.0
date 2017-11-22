@@ -1,31 +1,30 @@
 package com.ShoppingCart.Project.springbootshoppingcart.shoppingcartappcontroller;
 
-import java.io.IOException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ShoppingCart.Project.springbootshoppingcart.NetellerTxInput;
-import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.MockDBHandler;
-import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
-import com.google.gson.Gson;
+import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
 
 @Controller
 public class ViewController {
 	
 	MockDBHandler usd = new MockDBHandler();
+	
+	
+	@Autowired
+	UserDao userDao;
 	
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -54,80 +53,31 @@ public class ViewController {
 		return"registeredusers";
 	}
 	
-	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public String registerUserPage(Model model) {
-		
-		model.addAttribute("user", new TUser(null, null, null, null, null, null, null, null, null, null));
-		
-		return "registerpage";
-	}
-	
-	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String registerUserRequest(@ModelAttribute TUser user ) {
-		
-		usd.userRegistrationHandler(user);
-		
-		System.out.println(user.toString());
-		
-		return "registeredusers";
-		
-	}
+
 	
 
 	@RequestMapping(value="/netellerdeposit", method = RequestMethod.GET)
-	public String informationInputMapping(Model model) {
-
-		model.addAttribute("netellerTxInput", new NetellerTxInput());
-
+	public String informationInputMapping(Model model, HttpServletRequest request,HttpServletResponse response) {
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String name = user.getUsername();
+		SiteUser siteUser = userDao.findByEmail(name);
+		
+		String merchantMid = "1992";
+		String sessionId = request.getSession().getId();
+		
+		
+		
+		String piqCashierUrl = "https://test-cashier.paymentiq.io:443/#/merchant/"+
+								merchantMid+
+								"/user/"+ 
+								siteUser.getUserId().toString()+
+								"/method/"+
+								"deposit?selectlastusedtxmethod=false&showconfirmation=false&showmenu=true&locale=en&container=iframe&iframeWidth=400&iframeHeight=700&sessionid="+
+								sessionId;
+		
+		model.addAttribute("piqurl", piqCashierUrl);
+		
 		return "netellerdepositform";
-	}
-
-	@RequestMapping(value="/netellerdeposit", method = RequestMethod.POST)
-	public String netellerDepositRequest(@ModelAttribute NetellerTxInput netellerTxInput) {
-
-		String piqUrl = "https://test-api.paymentiq.io/paymentiq/api/neteller/deposit/process";
-
-		try {
-			CloseableHttpClient client = HttpClientBuilder.create().build();
-			HttpPost postRequest = new HttpPost(piqUrl);
-			postRequest.setHeader("accept", "application/json");
-			postRequest.setHeader("content-type", "application/json");
-			
-			netellerTxInput.setUserId(PiqResponseHandler.testuser.getUserId().toString());
-			netellerTxInput.setSessionId("2");
-			netellerTxInput.setMerchantId("1992");
-			
-			String payLoad = new Gson().toJson(netellerTxInput);
-			StringEntity reqEntity = new StringEntity(payLoad,"UTF-8");
-
-			reqEntity.setChunked(false);
-	        
-			postRequest.setEntity(reqEntity);
-			postRequest.setHeader("accept", "application/json");
-			postRequest.setHeader("content-type", "application/json");
-
-			HttpResponse response = client.execute(postRequest);
-			HttpEntity respEntity = response.getEntity();
-			
-			String content = EntityUtils.toString(respEntity);
-			System.out.println(content);
-			
-			
-
-			if (response.getStatusLine().getStatusCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-				
-			}
-			
-
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return "result";
-
 	}
 
 }
