@@ -1,6 +1,6 @@
 package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
-import com.ShoppingCart.Project.springbootshoppingcart.TUser;
+import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -9,9 +9,11 @@ import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callba
 public class PiqCallbackValidator {
 	
 	
-	public boolean validateVerifyUserRequest(TUser user, VerifyUserInput indata) {
+	
+	public boolean validateVerifyUserRequest(SiteUser user, VerifyUserInput indata) {
 		
-		if(indata.getSessionId().equals(user.getSessionId()) && indata.getUserId().equals(user.getUserId())) {
+		
+		if(/*indata.getSessionId().equals(user.getSessionId()) &&*/ indata.getUserId().equals(user.getUserId().toString())) {
 			
 			return true;
 			
@@ -23,9 +25,10 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateAutorizeTxRequest(TUser user, AuthorizeTxInput indata) {
+	public boolean validateAutorizeTxRequest(SiteUser user, AuthorizeTxInput indata) {
 		
-		if(indata.getUserId().equals(user.getUserId()) && indata.getTxAmount() <= user.getBalance()) {
+		
+		if(indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmount() <= user.getBalance()) {
 			
 			return true;
 			
@@ -37,9 +40,9 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateTransferTxRequest(TUser user, TransferTxInput indata) {
+	public boolean validateTransferTxRequest(SiteUser user, TransferTxInput indata) {
 		
-		if(indata.getUserId().equals(user.getUserId()) && indata.getTxAmountCy().equals(user.getBalanceCy())) {
+		if(indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmountCy().equals(user.getBalanceCy())) {
 			
 			return true;
 			
@@ -51,9 +54,9 @@ public class PiqCallbackValidator {
 		
 	}
 	
-	public boolean validateCancelTxRequest(TUser user, CancelTxInput indata) {
+	public boolean validateCancelTxRequest(SiteUser user, CancelTxInput indata) {
 		
-		if(indata.getUserId().equals(user.getUserId())) {
+		if(indata.getUserId().equals(user.getUserId().toString())) {
 			
 			return true;
 			

@@ -21,6 +21,8 @@ public class UserService implements UserDetailsService {
 	public void register(SiteUser user) {
 		usrDao.save(user);
 	}
+	
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
