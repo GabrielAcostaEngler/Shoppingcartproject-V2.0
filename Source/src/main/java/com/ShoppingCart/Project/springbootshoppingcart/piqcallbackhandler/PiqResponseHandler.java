@@ -2,9 +2,12 @@ package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
 import com.ShoppingCart.Project.springbootshoppingcart.TUser;
+import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -15,7 +18,12 @@ import com.google.gson.JsonObject;
 @Component
 public class PiqResponseHandler {
 
+	@Autowired
+	UserDao usrdao;
+	
 	PiqCallbackValidator rv = new PiqCallbackValidator();
+	
+	
 	public static TUser testuser = new TUser("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
 			"ga@hotmail.com","password", "1992-10-06", "0767105222");
 
@@ -25,27 +33,28 @@ public class PiqResponseHandler {
 
 	public String verifyUserHandler(VerifyUserInput indata) {
 
+		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 	
 		testuser.setSessionId("2");
 		String response;
 
-		if (rv.validateVerifyUserRequest(testuser, indata)) {
+		if (rv.validateVerifyUserRequest(user, indata)) {
 
 			JsonObject jsonobj = new JsonObject();
 			
-			jsonobj.addProperty("userId",testuser.getUserId());
+			jsonobj.addProperty("userId",user.getUserId());
 			jsonobj.addProperty("success",true);
-			jsonobj.addProperty("firstName",testuser.getFirstName());
-			jsonobj.addProperty("lastName",testuser.getLastName());
-			jsonobj.addProperty("street",testuser.getStreet());
-			jsonobj.addProperty("city",testuser.getCity());
-			jsonobj.addProperty("zip",testuser.getZip());
-			jsonobj.addProperty("country",testuser.getCountry());
-			jsonobj.addProperty("email",testuser.getEmail());
-			jsonobj.addProperty("dob",testuser.getDob());
-			jsonobj.addProperty("mobile",testuser.getMobile());
-			jsonobj.addProperty("balance",testuser.getBalance());
-			jsonobj.addProperty("balanceCy",testuser.getBalanceCy());
+			jsonobj.addProperty("firstName",user.getFirstName());
+			jsonobj.addProperty("lastName",user.getLastName());
+			jsonobj.addProperty("street",user.getStreet());
+			jsonobj.addProperty("city",user.getCity());
+			jsonobj.addProperty("zip",user.getZip());
+			jsonobj.addProperty("country",user.getCountry());
+			jsonobj.addProperty("email",user.getEmail());
+			jsonobj.addProperty("dob",user.getDob());
+			jsonobj.addProperty("mobile",user.getMobile());
+			jsonobj.addProperty("balance",user.getBalance());
+			jsonobj.addProperty("balanceCy",user.getBalanceCy());
 			
 			response = new Gson().toJson(jsonobj);
 
@@ -67,15 +76,17 @@ public class PiqResponseHandler {
 	}
 
 	public String authorizeTxHandler(AuthorizeTxInput indata) {
+		
+		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
+		UUID authCode = UUID.randomUUID();
 
 		String response;
 
-		if (rv.validateAutorizeTxRequest(testuser, indata)) {
+		if (rv.validateAutorizeTxRequest(user, indata)) {
 
-			UUID authCode = UUID.randomUUID();
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", true);
 			jsonobj.addProperty("authCode", authCode.toString());
 
@@ -85,7 +96,6 @@ public class PiqResponseHandler {
 
 		} else {
 
-			UUID authCode = UUID.randomUUID();
 			JsonObject jsonobj = new JsonObject();
 
 			jsonobj.addProperty("userId", testuser.getUserId());
@@ -101,18 +111,20 @@ public class PiqResponseHandler {
 
 	public String transferTxHandler(TransferTxInput indata) {
 
+		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 		String response;
 		Double balanceAfterTransaction;
 
-		if (rv.validateTransferTxRequest(testuser, indata)) {
+		if (rv.validateTransferTxRequest(user, indata)) {
 
-			balanceAfterTransaction = testuser.getBalance() + indata.getTxAmount();
-			testuser.setBalance(balanceAfterTransaction);
+			balanceAfterTransaction = user.getBalance() + indata.getTxAmount();
+			user.setBalance(balanceAfterTransaction);
+			usrdao.save(user);
 
 			UUID merchantTxId = UUID.randomUUID();
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", true);
 			jsonobj.addProperty("txId", indata.getTxId());
 			jsonobj.addProperty("merchantTxId", merchantTxId.toString());
@@ -125,7 +137,7 @@ public class PiqResponseHandler {
 
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", false);
 			jsonobj.addProperty("txId", indata.getTxId());
 			jsonobj.addProperty("errMsg", "Transfer was not Successful");
@@ -140,13 +152,14 @@ public class PiqResponseHandler {
 
 	public String cancelTxHandler(CancelTxInput indata) {
 
+		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 		String response;
 
-		if (rv.validateCancelTxRequest(testuser, indata)) {
+		if (rv.validateCancelTxRequest(user, indata)) {
 
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", true);
 
 			response = new Gson().toJson(jsonobj);
@@ -157,7 +170,7 @@ public class PiqResponseHandler {
 
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", false);
 			jsonobj.addProperty("errMsg", "Error");
 
