@@ -5,8 +5,17 @@
 	
 	<body>
 		<div th:replace="fragments/header :: header"></div>
-			
-		<form action="#" th:action="@{/netellerdeposit}" th:object=${netellerTxInput} method="post">
+		
+		<a class="btn" data-popup-open="popup-1" href="#">Open Popup #1</a>
+		
+		<div class="popup" data-popup="popup-1">
+		    <div class="popup-inner">
+		      <iframe width="560" height="315" th:src="${piqurl}"></iframe>
+		       <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+		    </div>
+		</div>
+		
+		<!-- <form action="#" th:action="@{/netellerdeposit}" th:object=${netellerTxInput} method="post">
 			<div class="netellerdepositform">
 	    		<input type="text" th:field="*{amount}" class="netellerdepositinput" id="inputAmount"  placeholder="Enter amount">
 	    		<input type="text" th:field="*{account}" class="netellerdepositinput" id="inputAccount" placeholder="Enter account">
@@ -14,7 +23,7 @@
 	    		<input type="text" th:field="*{bonusCode}" class="netellerdepositinput" id="inputBonusCode" placeholder="Enter bonuscode (Optional)">
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
-		</form>
+		</form> -->
 		
 		<div th:replace="fragments/header :: footer"></div>
 	</body>

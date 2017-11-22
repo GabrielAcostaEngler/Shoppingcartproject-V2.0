@@ -28,6 +28,7 @@
 				    </span>
 				    
 				   <span sec:authorize="isAuthenticated()">
+				   		<span sec:authentication="name"></span>
 				    	<a th:href="@{javascript:$('#logoutForm').submit();}">Log out</a>
 				 		<a th:href="@{/netellerdeposit}">Deposit</a>
 				 		<a href="#">Withdraw</a>
@@ -42,6 +43,7 @@
 		
 		<div th:fragment="footer">
 			<script th:src="@{https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+			<script th:src="@{/js/index.js}"></script>
 		</div>
 	</body>
 	
