@@ -1,42 +1,44 @@
 package com.ShoppingCart.Project.springbootshoppingcart.shoppingcartappcontroller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
-import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.UserService;
 
 @Controller
 public class RegSiteUserController {
-	
-	
+
 	@Autowired
 	private UserService userService;
 
-	
-	
-	
-	@RequestMapping(value="/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerUserPage(Model model) {
-		
-		model.addAttribute("user", new TUser(null, null, null, null, null, null, null, null, null, null));
-		
+
+		SiteUser user = new SiteUser(null, null, null, null, null, null, null, null, null, null);
+
+		model.addAttribute("user", user);
+
 		return "registerpage";
 	}
-	
-	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String registerUserRequest(@ModelAttribute SiteUser user ) {
-		
-		userService.register(user);
-		
-		System.out.println(user.toString());
-		
-		return "registeredusers";
-		
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerUserRequest(Model model, @Valid SiteUser user, BindingResult result) {
+
+		if (!result.hasErrors()) {
+			userService.register(user);
+			System.out.println("\n" + user.toString() + "\n");
+
+			return "registrationsuccess";
+		}
+
+		return "registerpage";
+
 	}
 }
