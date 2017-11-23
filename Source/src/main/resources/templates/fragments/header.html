@@ -14,31 +14,41 @@
 	<body>
 	
 		<div th:fragment="header">
-			<nav>
-				<div>
-					<a th:href="@{/}">Home</a>
-			 		<a th:href="@{/about}">About</a>
-			 		<a th:href="@{/contact}">Contact</a>
-				</div>
-			    
-			    <div>
-				    <span sec:authorize="!isAuthenticated()">
-				    	<a th:href="@{/login}">Log in</a>
-				    	<a th:href="@{/register}">Register</a>
-				    </span>
-				    
-				   <span sec:authorize="isAuthenticated()">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" th:href="@{/}">Springboot Demo</a>
+			    </div>
+			    <ul class="nav navbar-nav">
+			      <li><a th:href="@{/}">Home</a></li>
+			      <li><a th:href="@{/about}">About</a></li>
+			      <li><a th:href="@{/contact}">Contact</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right" sec:authorize="!isAuthenticated()">
+			      <li><a th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			      <li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			    </ul>
+				<div class="nav navbar-nav navbar-right">
+	 				<div class="dropdown" sec:authorize="isAuthenticated()">
 				   		<span sec:authentication="name"></span>
-				    	<a th:href="@{javascript:$('#logoutForm').submit();}">Log out</a>
-				 		<a th:href="@{/netellerdeposit}">Deposit</a>
-				 		<a href="#">Withdraw</a>
-				   </span>
-			    </div> 
+						<button onclick="myFunction()" class="dropbtn">
+							  <div class="bar1"></div>
+							  <div class="bar2"></div>
+							  <div class="bar3"></div>
+						</button>
+					 	<div id="myDropdown" class="dropdown-content">
+						    <a th:href="@{javascript:$('#logoutForm').submit();}">Log out</a>
+						    <a th:href="@{/netellerdeposit}">Deposit</a>
+						    <a th:href="@{#}">Withdraw</a>
+						</div>
+					</div> 
+				</div>
+			  </div>
 			</nav>
 			
-				<form id="logoutForm" th:action="@{/logout}" method="post">
+			<form id="logoutForm" th:action="@{/logout}" method="post">
 		            
-		        </form>
+		    </form>
 		</div>
 		
 		<div th:fragment="footer">
