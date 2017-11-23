@@ -9,7 +9,7 @@ a {
 	font-size: 30px;
 	color: #333333;
 	text-decoration: none;
-	margin: 15px 30px;
+	margin: 2px 15px;
 	transition: 0.5s linear;
 }
 
@@ -17,7 +17,7 @@ a:hover {
 	color: rgb(110, 182, 51);
 }
 
-button {
+.loginbutton {
 	margin: 20px 0;
 	background-color: rgb(77, 151, 16);
 	color: white;
@@ -30,13 +30,12 @@ button {
 	transition: 1s linear;
 }
 
-button:hover {
+.loginbutton:hover {
 	background-color: rgb(110, 182, 51);
 }
 
-nav {
+.nav {
 	display: flex;
-	border-top: 5px solid rgb(110, 182, 51);
 	justify-content: space-between;
 }
 
@@ -47,7 +46,7 @@ nav {
 }
 
 @media screen and (max-width: 720px) {
-	nav {
+	.nav {
 		flex-direction: column;
 		align-items: center;
 		background-color: #333333;
@@ -96,7 +95,7 @@ nav {
 
 }
 
-/* ---------------------------------*/
+/* ---------------POPUP------------------*/
 
 
 /* Outer */
@@ -152,3 +151,73 @@ nav {
     background:rgba(0,0,0,1);
     text-decoration:none;
 }
+
+/*---------------DROPDOWN--------------------*/
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #222222;
+    color: white;
+    padding: 13px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    color: #ffffff;
+    outline: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #222222;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: #9D9D9D;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+
+/*------MENUICON-------*/
+.menuiconcontainer {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 5px;
+    background-color: #9D9D9D;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+.bar1:hover,.bar1:focus, .bar2:hover,.bar2:focus,.bar3:hover,.bar3:focus{
+	color: #f1f1f1;
+    outline: none;
+} 
