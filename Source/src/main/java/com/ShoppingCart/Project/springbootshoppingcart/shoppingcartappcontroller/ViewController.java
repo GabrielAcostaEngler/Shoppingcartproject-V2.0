@@ -66,7 +66,6 @@ public class ViewController {
 		String sessionId = request.getSession().getId();
 		
 		
-		
 		String piqCashierUrl = "https://test-cashier.paymentiq.io:443/#/merchant/"+
 								merchantMid+
 								"/user/"+ 

@@ -7,6 +7,8 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @EnableJpaRepositories
@@ -22,20 +24,26 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 	}
 	
 	@Bean
-	CommandLineRunner runner(UserDao user) {
+	CommandLineRunner runner(UserService user) {
 		
 		return args -> {
-			user.save(new SiteUser("Gabriel",
-									"Acosta",
-									"stnbrohultsvgn",
-									"Uppsala",
-									"75758",
+			user.register(new SiteUser("Test",
+									"testsson",
+									"testvgn123",
+									"testcity",
+									"75757",
 									"Sweden",
-									"ga_engler@hotmail.com",
-									"hejhej",
-									"1992-10-06",
-									"0767105222"));
+									"TEST_USER@hotmail.com",
+									"password",
+									"1990-01-01",
+									"0760000000"));
 		};
 	}
-
+	
+	
+	@Bean
+	PasswordEncoder getEncoder() {
+		
+		return new BCryptPasswordEncoder();
+	}
 }

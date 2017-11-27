@@ -84,7 +84,6 @@ public class PiqCallbackController {
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.getWriter().write(transferTxResponse);
 			
-			System.out.println(PiqResponseHandler.testuser);
 			
 			return;
 			
