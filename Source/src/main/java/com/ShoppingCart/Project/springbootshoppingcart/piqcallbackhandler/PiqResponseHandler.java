@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
-import com.ShoppingCart.Project.springbootshoppingcart.TUser;
 import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
+import com.ShoppingCart.Project.springbootshoppingcart.UserService;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -21,11 +21,10 @@ public class PiqResponseHandler {
 	@Autowired
 	UserDao usrdao;
 	
+	
 	PiqCallbackValidator rv = new PiqCallbackValidator();
 	
-	
-	public static TUser testuser = new TUser("Gabriel", "Acosta", "Stnbrohultsvgn", "uppsala", "75758", "swe",
-			"ga@hotmail.com","password", "1992-10-06", "0767105222");
+
 
 	public PiqResponseHandler() {
 
@@ -35,7 +34,6 @@ public class PiqResponseHandler {
 
 		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 	
-		testuser.setSessionId("2");
 		String response;
 
 		if (rv.validateVerifyUserRequest(user, indata)) {
@@ -98,7 +96,7 @@ public class PiqResponseHandler {
 
 			JsonObject jsonobj = new JsonObject();
 
-			jsonobj.addProperty("userId", testuser.getUserId());
+			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", false);
 			jsonobj.addProperty("authCode", authCode.toString());
 			jsonobj.addProperty("errMsg", "User not Authorized");
