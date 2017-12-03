@@ -1,5 +1,6 @@
 package com.ShoppingCart.Project.springbootshoppingcart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @EnableJpaRepositories
 public class SpringbootShoppingcartApplication extends SpringBootServletInitializer {
+	
+	@Autowired 
+	UserService userService;
 
 	@Override
 	protected SpringApplicationBuilder configure(final SpringApplicationBuilder builder) {
@@ -24,10 +28,10 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 	}
 	
 	@Bean
-	CommandLineRunner runner(UserService user) {
+	CommandLineRunner runner() {
 		
 		return args -> {
-			user.register(new SiteUser("Test",
+			userService.register(new SiteUser("Test",
 									"testsson",
 									"testvgn123",
 									"testcity",
