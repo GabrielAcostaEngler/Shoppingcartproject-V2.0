@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
 import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
-import com.ShoppingCart.Project.springbootshoppingcart.UserService;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;

@@ -14,7 +14,7 @@
 	<body>
 	
 		<div th:fragment="header">
-			<nav class="navbar navbar-inverse">
+			<nav class="navbar navbar-inverse navbar-static-top">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
 			      <a class="navbar-brand" th:href="@{/}">Shopping-cart Demo</a>
@@ -28,18 +28,16 @@
 			      <li><a th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 			      <li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			    </ul>
-				<div class="nav navbar-nav navbar-right">
-	 				<div class="dropdown" sec:authorize="isAuthenticated()">
+				<div class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
+	 				<div class="dropdown">
 	 					<div class="userinfo">
 		 					<span th:text="${@userService.getCurrentSiteUser().getFirstName()}"></span>
-					   		<a th:href="@{/netellerdeposit}" th:text="${@userService.getCurrentSiteUser().getBalance()}"></a>
+					   		<a th:href="@{/managefunds}" th:text="${@userService.getCurrentSiteUser().getBalance()}"></a>
+					   		<button onclick="myFunction()" class="dropbtn"></button>
 	 					</div>
-						<button onclick="myFunction()" class="dropbtn">
-						</button>
 					 	<div id="myDropdown" class="dropdown-content">
 						    <a th:href="@{javascript:$('#logoutForm').submit();}">Log out</a>
-						    <a th:href="@{/netellerdeposit}">Deposit</a>
-						    <a th:href="@{#}">Withdraw</a>
+						    <a th:href="@{/managefunds}">Manage funds</a>
 						</div>
 					</div> 
 				</div>

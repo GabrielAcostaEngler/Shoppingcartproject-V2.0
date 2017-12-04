@@ -51,7 +51,7 @@ public class ViewController {
 
 	
 
-	@RequestMapping(value="/netellerdeposit", method = RequestMethod.GET)
+	@RequestMapping(value="/managefunds", method = RequestMethod.GET)
 	public String informationInputMapping(Model model, HttpServletRequest request,HttpServletResponse response) {
 		
 		SiteUser siteUser = userService.getCurrentSiteUser();
@@ -60,7 +60,7 @@ public class ViewController {
 		String sessionId = request.getSession().getId();
 		
 		
-		String piqCashierUrl = "https://test-cashier.paymentiq.io:443/#/merchant/"+
+		String piqCashierDepositUrl = "https://test-cashier.paymentiq.io:443/#/merchant/"+
 								merchantMid+
 								"/user/"+ 
 								siteUser.getUserId().toString()+
@@ -68,9 +68,18 @@ public class ViewController {
 								"deposit?selectlastusedtxmethod=false&showconfirmation=false&showmenu=true&locale=en&container=iframe&iframeWidth=400&iframeHeight=700&sessionid="+
 								sessionId;
 		
-		model.addAttribute("piqurl", piqCashierUrl);
+		String piqCashierWithdrawUrl = "https://test-cashier.paymentiq.io:443/#/merchant/"+
+								merchantMid+
+								"/user/"+ 
+								siteUser.getUserId().toString()+
+								"/method/"+
+								"withdrawal?selectlastusedtxmethod=false&showconfirmation=false&showmenu=true&locale=en&container=iframe&iframeWidth=400&iframeHeight=700&sessionid="+
+								sessionId;
 		
-		return "netellerdepositform";
+		model.addAttribute("piqwithdrawurl", piqCashierWithdrawUrl);
+		model.addAttribute("piqdepositurl", piqCashierDepositUrl);
+		
+		return "paymentpage";
 	}
 
 }
