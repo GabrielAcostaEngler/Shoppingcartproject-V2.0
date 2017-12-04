@@ -25,8 +25,8 @@
 			      <li><a th:href="@{/contact}">Contact</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right" sec:authorize="!isAuthenticated()">
-			      <li><a th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			      <li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			    	<li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			      	<li><a th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 			    </ul>
 				<div class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
 	 				<div class="dropdown">
