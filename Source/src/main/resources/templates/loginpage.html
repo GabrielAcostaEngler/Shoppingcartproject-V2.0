@@ -7,7 +7,6 @@
 		<div th:replace="fragments/header :: header"></div>
 			
 			<form action="#" th:action="@{/login}" method="post">
-				
 		        <div class="loginform">
 		      		<div class="login-error" th:if="${param.error}">
 						<span>username or password is incorrect!</span> 
@@ -18,9 +17,7 @@
 		        </div>
 		   	</form>
 		   	
-			
 		<div th:replace="fragments/header :: footer"></div>
 	</body>
 	
-
 </html>
