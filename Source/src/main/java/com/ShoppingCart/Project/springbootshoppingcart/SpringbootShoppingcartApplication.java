@@ -37,7 +37,7 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 									"testcity",
 									"75757",
 									"Sweden",
-									"TEST_USER@hotmail.com",
+									"TEST_USER@gmail.com",
 									"password",
 									"1990-01-01",
 									"0760000000"));
