@@ -1,10 +1,12 @@
 package com.ShoppingCart.Project.springbootshoppingcart;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "site_users")
@@ -95,7 +97,7 @@ public class SiteUser {
 		return mobile;
 	}
 
-	public Double getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 

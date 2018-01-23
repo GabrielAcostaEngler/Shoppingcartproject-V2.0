@@ -30,9 +30,9 @@
 			    </ul>
 				<div class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
 	 				<div class="dropdown">
-	 					<div class="userinfo">
+	 					<div class="userinfo" th:with="userBalance=${@userService.getCurrentSiteUser().getBalance()}">
 		 					<span th:text="${@userService.getCurrentSiteUser().getFirstName()}"></span>
-					   		<a th:href="@{/managefunds}" th:text="${@userService.getCurrentSiteUser().getBalance()}"></a>
+					   		<a th:href="@{/managefunds}" th:text="${#numbers.formatDecimal(userBalance, 0, 'COMMA', 2, 'POINT')}"></a>
 					   		<button onclick="myFunction()" class="dropbtn"></button>
 	 					</div>
 					 	<div id="myDropdown" class="dropdown-content">
