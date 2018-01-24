@@ -20,8 +20,9 @@ public class PiqResponseHandler {
 	@Autowired
 	UserDao usrdao;
 	
-	
 	PiqCallbackValidator rv = new PiqCallbackValidator();
+	
+	PiqValidateObject pvo = new PiqValidateObject();
 	
 
 
@@ -35,7 +36,7 @@ public class PiqResponseHandler {
 	
 		String response;
 
-		if (rv.validateVerifyUserRequest(user, indata)) {
+		if (rv.validateVerifyUserRequest(user, indata, pvo).success) {
 
 			JsonObject jsonobj = new JsonObject();
 			
@@ -64,7 +65,7 @@ public class PiqResponseHandler {
 			jsonobj.addProperty("sessionId", indata.getSessionId());
 			jsonobj.addProperty("userId", indata.getUserId());
 			jsonobj.addProperty("success", false);
-			jsonobj.addProperty("errMsg", "Unknown ID");
+			jsonobj.addProperty("errMsg", pvo.resultMessage);
 
 			response = new Gson().toJson(jsonobj);
 
