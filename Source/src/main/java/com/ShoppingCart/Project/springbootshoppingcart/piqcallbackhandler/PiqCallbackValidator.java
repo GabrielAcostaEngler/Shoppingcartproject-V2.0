@@ -7,65 +7,68 @@ import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callba
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
 
 public class PiqCallbackValidator {
-	
-	
-	
-	public boolean validateVerifyUserRequest(SiteUser user, VerifyUserInput indata) {
-		
-		
-		if(/*indata.getSessionId().equals(user.getSessionId()) &&*/ indata.getUserId().equals(user.getUserId().toString())) {
-			
-			return true;
-			
-		} else {	
-			
-			return false;
-			
+
+	public PiqValidateObject validateVerifyUserRequest(SiteUser user, VerifyUserInput indata, PiqValidateObject pvo) {
+
+		if (!indata.getUserId().equals(user.getUserId().toString())) {
+
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_USERID_DOES_NOT_MATCH);
+
+			return pvo;
+
+		} else {
+
+			pvo.setSuccess(true);
+			pvo.setResultMessage("");
+
+			return pvo;
+
 		}
-		
+
 	}
-	
+
 	public boolean validateAutorizeTxRequest(SiteUser user, AuthorizeTxInput indata) {
-		
-		
-		if(indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmount() <= user.getBalance()) {
-			
+
+		if (indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmount() <= user.getBalance()) {
+
 			return true;
-			
+
 		} else {
-			
+
 			return false;
-			
+
 		}
-		
+
 	}
-	
+
 	public boolean validateTransferTxRequest(SiteUser user, TransferTxInput indata) {
-		
-		if(indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmountCy().equals(user.getBalanceCy())) {
-			
+
+		if (indata.getUserId().equals(user.getUserId().toString())
+				&& indata.getTxAmountCy().equals(user.getBalanceCy())) {
+
 			return true;
-			
+
 		} else {
-			
+
 			return false;
-			
+
 		}
-		
+
 	}
-	
+
 	public boolean validateCancelTxRequest(SiteUser user, CancelTxInput indata) {
-		
-		if(indata.getUserId().equals(user.getUserId().toString())) {
-			
+
+		if (indata.getUserId().equals(user.getUserId().toString())) {
+
 			return true;
-			
+
 		} else {
-			
+
 			return false;
-			
+
 		}
-		
+
 	}
-	
+
 }
