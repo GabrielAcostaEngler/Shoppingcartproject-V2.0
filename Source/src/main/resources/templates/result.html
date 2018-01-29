@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
 
-	<head th:replace="fragments/header :: head-css"></head>
-	
-	<body>
-		<div th:replace="fragments/header :: header"></div>
-		
-		
-		<div class ="result">
-			<h1>Result</h1>
-			<p class="lead" th:text="'amount: ' + ${netellerTxInput.amount}" />
-		    <p class="lead" th:text="'account: ' + ${netellerTxInput.account}" />
-		    <p class="lead" th:text="'userid: ' + ${netellerTxInput.userId}" />
-		    <p class="lead" th:text="'sessionid: ' + ${netellerTxInput.sessionId}" />
-		    <a class="btn btn-primary" href="/netellerdeposit" role="button">Submit a new payment</a>
-		</div>
-	    
-		
-		<div th:replace="fragments/header :: footer"></div>
-	</body>
-	
+<head th:replace="fragments/header :: head-css"></head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="result">
+		<h1>Result</h1>
+		<p class="lead" th:text="'amount: ' + ${netellerTxInput.amount}" />
+		<p class="lead" th:text="'account: ' + ${netellerTxInput.account}" />
+		<p class="lead" th:text="'userid: ' + ${netellerTxInput.userId}" />
+		<p class="lead" th:text="'sessionid: ' + ${netellerTxInput.sessionId}" />
+		<a class="btn btn-primary" href="/netellerdeposit" role="button">Submit a new payment</a>
+	</div>
+
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
+
 
 </html>

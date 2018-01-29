@@ -3,18 +3,17 @@
 
 <head th:replace="fragments/header :: head-css"></head>
 
-	<body>
-		<div th:replace="fragments/header :: header"></div>
-	   
-	   
-	   	<ul>
-	    <li th:each="item : ${list}">
-	        <span th:text="${item}">Default</span>
-	    </li>
-		</ul>
-		  
-		<div th:replace="fragments/header :: footer"></div>
-	</body>
-	
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<ul>
+		<li th:each="item : ${list}"><span th:text="${item}">Default</span>
+		</li>
+	</ul>
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
+
 
 </html>

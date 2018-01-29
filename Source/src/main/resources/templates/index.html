@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http//www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http//www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-	<head th:replace="fragments/header :: head-css"></head>
-	
-	<body>
-		<div th:replace="fragments/header :: header"></div>
-		
-			<div class=container sec:authorize="!isAuthenticated()">
-				<div class="jumbotron">
-				  <h1 class="display-3">Welcome to shopping-cart demo!</h1>
-				  <p class="lead">This is a simple demo used for testing the integration with PaymentIQ.</p>
-				  <hr class="my-4">
-				  <p>To test a payment you can register an account and log in or use the existing test account (email: TEST_USER@gmail.com password: password)</p>
-				  <p class="lead">
-				    <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
-				  </p>
-				</div>
-			</div>
+<head th:replace="fragments/header :: head-css"></head>
 
-		
-		<div th:replace="fragments/header :: footer"></div>
-	</body>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class=container sec:authorize="!isAuthenticated()">
+		<div class="jumbotron">
+			<h1 class="display-3">Welcome to shopping-cart demo!</h1>
+			<p class="lead">This is a simple demo used for testing the
+				integration with PaymentIQ.</p>
+			<hr class="my-4">
+			<p>To test a payment you can register an account and log in or
+				use the existing test account (email: TEST_USER@gmail.com password:
+				password)</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+			</p>
+		</div>
+	</div>
+
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
 
 </html>

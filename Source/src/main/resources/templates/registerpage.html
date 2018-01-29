@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
 
-	<head th:replace="fragments/header :: head-css"></head>
+<head th:replace="fragments/header :: head-css"></head>
 
-	<body>
-		<div th:replace="fragments/header :: header"></div>
-	
-	
-	    <form action="#" th:action="@{/register}" th:object=${user} method="post">
-	        <div class="registerform">
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<form action="#" th:action="@{/register}" th:object=${user} method="post">
+		 <div class="registerform">
 	            <input class="registerinput" th:field="*{firstName}" id="inputFirstName" placeholder="First name" type="text">
 	            <input class="registerinput" th:field="*{lastName}"  id="inputLastName" placeholder="Last name" type="text">
 	            <input class="registerinput" th:field="*{street}" id="inputStreet" placeholder="Street" type="text">
@@ -20,11 +20,11 @@
 	            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="text">
 	            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text"> 
 	            <button class="registerbutton" type= "submit">Register</button>
-	        </div>
-	    </form>
-		
+	     </div>
+	</form>
 
-		<div th:replace="fragments/header :: footer"></div>
-	</body>
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
 
 </html>

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http//www.thymeleaf.org">
 
-	<head th:replace="fragments/header :: head-css"></head>
-	
-	<body>
-		<div th:replace="fragments/header :: header"></div>
-			
-			<form action="#" th:action="@{/login}" method="post">
-		        <div class="loginform">
-		      		<div class="login-error" th:if="${param.error}">
-						<span>username or password is incorrect!</span> 
-					</div>
-		            <input class="logininput" name="email" placeholder="E-mail" type="text">
-		            <input class="logininput" name="password" placeholder="password"type="password">
-		            <button class="loginbutton" type="submit">Sign In</button>
-		        </div>
-		   	</form>
-		   	
-		<div th:replace="fragments/header :: footer"></div>
-	</body>
-	
+<head th:replace="fragments/header :: head-css"></head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<form action="#" th:action="@{/login}" method="post">
+		<div class="loginform">
+			<div class="login-error" th:if="${param.error}">
+				<span>username or password is incorrect!</span>
+			</div>
+			<input class="logininput" name="email" placeholder="E-mail"
+				type="text"> <input class="logininput" name="password"
+				placeholder="password" type="password">
+			<button class="loginbutton" type="submit">Sign In</button>
+		</div>
+	</form>
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
+
 </html>
