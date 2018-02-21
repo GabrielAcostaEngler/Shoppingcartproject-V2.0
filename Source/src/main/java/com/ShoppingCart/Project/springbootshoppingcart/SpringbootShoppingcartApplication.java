@@ -31,16 +31,41 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 	CommandLineRunner runner() {
 		
 		return args -> {
-			userService.register(new SiteUser("Test",
+			userService.register(new SiteUser("TestSEK",
 									"testsson",
 									"testvgn123",
 									"testcity",
 									"75757",
 									"Sweden",
-									"TEST_USER@gmail.com",
+									"TEST_USER_SEK@gmail.com",
 									"password",
 									"1990-01-01",
 									"0760000000"));
+			
+			
+			
+			
+			userService.register(new SiteUser("TestEUR",
+									"testsson2",
+									"testvgn123",
+									"testcity2",
+									"75756",
+									"Spain",
+									"TEST_USER_EUR@gmail.com",
+									"password",
+									"1990-01-02",
+									"0760000002"));
+			
+			userService.register(new SiteUser("TestUSD",
+									"testsson2",
+									"testvgn123",
+									"testcity2",
+									"75756",
+									"United States",
+									"TEST_USER_USD@gmail.com",
+									"password",
+									"1990-01-02",
+									"0760000002"));
 		};
 	}
 	

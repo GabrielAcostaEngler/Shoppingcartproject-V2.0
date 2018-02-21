@@ -5,19 +5,34 @@
 
 <body>
 	<div th:replace="fragments/header :: header"></div>
+	
+	
 
 
 	<form action="#" th:action="@{/register}" th:object=${user} method="post">
 		 <div class="registerform">
+		 	<div class="login-error">
+		 		<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+		 		<p th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}"></p>
+		 		<p th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></p>
+		 		<p th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></p>
+		 		<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+		 		<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+		 	</div>
 	            <input class="registerinput" th:field="*{firstName}" id="inputFirstName" placeholder="First name" type="text">
 	            <input class="registerinput" th:field="*{lastName}"  id="inputLastName" placeholder="Last name" type="text">
 	            <input class="registerinput" th:field="*{street}" id="inputStreet" placeholder="Street" type="text">
 	            <input class="registerinput" th:field="*{city}" id="inputCity" placeholder="City" type="text">
 	            <input class="registerinput" th:field="*{zip}" id="inputZip" placeholder="Zip code" type="text">
-	            <input class="registerinput" th:field="*{country}" id="inputCountry" placeholder="Country" type="text">
+	            <select class="registerinput" th:field="*{country}" id="inputCountry">
+	            	<option selected="selected" value="">Select Country</option>
+	            	<option value="Sweden">Sweden</option>
+	            	<option value="Spain">Spain</option>
+	            	<option value="United States">United States</option>
+	            </select>
 	            <input class="registerinput" th:field="*{email}" id="inputEmail" placeholder="E-mail" type="text">
-	            <input class="registerinput" th:field="*{password}" id="inputPassword" placeholder="password" type="password">
-	            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="text">
+	            <input class="registerinput" th:field="*{plainPassword}" id="inputPassword" placeholder="Enter password between 5-15 characters" type="password">
+	            <input class="registerinput" th:field="*{dob}" id="inputDob" placeholder="Date of birth (yyyy-mm-dd)" type="date">
 	            <input class="registerinput" th:field="*{mobile}" id="inputMobile" placeholder="Mobile number" type="text"> 
 	            <button class="registerbutton" type= "submit">Register</button>
 	     </div>

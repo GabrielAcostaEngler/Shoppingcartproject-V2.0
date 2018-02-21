@@ -86,6 +86,7 @@ public class PiqResponseHandler {
 
 			jsonobj.addProperty("userId", user.getUserId());
 			jsonobj.addProperty("success", true);
+			jsonobj.addProperty("merchantTxId",1);
 			jsonobj.addProperty("authCode", authCode.toString());
 
 			response = new Gson().toJson(jsonobj);
