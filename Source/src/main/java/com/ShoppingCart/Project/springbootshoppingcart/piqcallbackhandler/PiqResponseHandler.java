@@ -24,6 +24,8 @@ public class PiqResponseHandler {
 	
 	PiqValidateObject pvo = new PiqValidateObject();
 	
+	TxCmdHandler cmdHandler = new TxCmdHandler();
+	
 
 
 	public PiqResponseHandler() {
@@ -31,6 +33,8 @@ public class PiqResponseHandler {
 	}
 
 	public String verifyUserHandler(VerifyUserInput indata) {
+		
+		cmdHandler.addVerifyUserCmd(indata);
 
 		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 	
@@ -74,6 +78,12 @@ public class PiqResponseHandler {
 	}
 
 	public String authorizeTxHandler(AuthorizeTxInput indata) {
+		
+		VerifyUserInput userInput = null;
+		userInput = cmdHandler.getLatestCmd(userInput);
+		
+		System.out.println(userInput.toString());
+		
 		
 		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
 		UUID authCode = UUID.randomUUID();

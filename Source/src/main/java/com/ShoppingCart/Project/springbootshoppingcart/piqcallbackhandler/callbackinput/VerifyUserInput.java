@@ -49,4 +49,12 @@ public class VerifyUserInput {
 		this.sessionId = sessionId;
 	}
 
+
+	@Override
+	public String toString() {
+		return "VerifyUserInput [userId=" + userId + ", sessionId=" + sessionId + "]";
+	}
+	
+	
+
 }

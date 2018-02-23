@@ -71,6 +71,9 @@ public class SiteUser {
 	@NotBlank
 	private String balanceCy;
 	
+	
+	//constructor
+	
 	protected SiteUser() {
 	}
 
@@ -117,6 +120,7 @@ public class SiteUser {
 	}
 
 	// getters
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -175,8 +179,7 @@ public class SiteUser {
 	
 
 	// setters
-
-
+	
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
