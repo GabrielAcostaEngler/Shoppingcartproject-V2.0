@@ -18,12 +18,10 @@ import com.google.gson.JsonObject;
 public class PiqResponseHandler {
 
 	@Autowired
-	UserDao usrdao;
+	UserDao userdao;
 	
 	PiqCallbackValidator rv = new PiqCallbackValidator();
-	
 	PiqValidateObject pvo = new PiqValidateObject();
-	
 	TxCmdHandler cmdHandler = new TxCmdHandler();
 	
 
@@ -36,7 +34,7 @@ public class PiqResponseHandler {
 		
 		cmdHandler.addVerifyUserCmd(indata);
 
-		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userdao.findByUserId(Long.parseLong(indata.getUserId()));
 	
 		String response;
 
@@ -79,13 +77,12 @@ public class PiqResponseHandler {
 
 	public String authorizeTxHandler(AuthorizeTxInput indata) {
 		
-		VerifyUserInput userInput = null;
-		userInput = cmdHandler.getLatestCmd(userInput);
+		VerifyUserInput userInput = cmdHandler.getLatestCmd();
 		
 		System.out.println(userInput.toString());
 		
 		
-		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userdao.findByUserId(Long.parseLong(indata.getUserId()));
 		UUID authCode = UUID.randomUUID();
 
 		String response;
@@ -120,7 +117,7 @@ public class PiqResponseHandler {
 
 	public String transferTxHandler(TransferTxInput indata) {
 
-		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userdao.findByUserId(Long.parseLong(indata.getUserId()));
 		String response;
 		Double balanceAfterTransaction;
 
@@ -128,7 +125,7 @@ public class PiqResponseHandler {
 
 			balanceAfterTransaction = user.getBalance() + indata.getTxAmount();
 			user.setBalance(balanceAfterTransaction);
-			usrdao.save(user);
+			userdao.save(user);
 
 			UUID merchantTxId = UUID.randomUUID();
 			JsonObject jsonobj = new JsonObject();
@@ -161,7 +158,7 @@ public class PiqResponseHandler {
 
 	public String cancelTxHandler(CancelTxInput indata) {
 
-		SiteUser user= usrdao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userdao.findByUserId(Long.parseLong(indata.getUserId()));
 		String response;
 
 		if (rv.validateCancelTxRequest(user, indata)) {

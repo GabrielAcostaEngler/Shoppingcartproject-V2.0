@@ -9,7 +9,6 @@ public class TxCmdHandler {
 	private ArrayList<VerifyUserInput> txCmd = new ArrayList<VerifyUserInput>();
 	
 	
-	
 	public TxCmdHandler() {
 	}
 
@@ -19,7 +18,7 @@ public class TxCmdHandler {
 	}
 	
 	
-	public VerifyUserInput getLatestCmd(VerifyUserInput userInput) {
+	public VerifyUserInput getLatestCmd() {
 		
 		for(int i = txCmd.size() - 1; i >= 0;) {
 			return (VerifyUserInput) txCmd.get(i);
