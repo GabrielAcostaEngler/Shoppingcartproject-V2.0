@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.*;
 
 @Entity
 public class PiqTx {
@@ -117,9 +116,6 @@ public class PiqTx {
 	public void setTxRefId(String txRefId) {
 		this.txRefId = txRefId;
 	}
-
-
-
 	
 
 }
