@@ -93,7 +93,7 @@ public class SiteUser {
 		this.mobile = mobile;
 		this.balanceCy = "";
 		this.balance = 0.00;
-
+		
 		switch (country) {
 
 		case "Sweden":
