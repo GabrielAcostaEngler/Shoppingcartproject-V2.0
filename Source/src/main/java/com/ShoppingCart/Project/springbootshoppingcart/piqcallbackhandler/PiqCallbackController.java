@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqResponseHandler;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTxHandler;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
@@ -22,7 +22,7 @@ import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callba
 public class PiqCallbackController {
 
 	@Autowired
-	private PiqResponseHandler rh;
+	private PiqTxHandler piqTxHandler;
 	
 	
 	
@@ -32,7 +32,7 @@ public class PiqCallbackController {
 		
 		try {
 			VerifyUserInput verifyUserInput = new VerifyUserInput(indata);
-			String verifyUserResponse = rh.verifyUserHandler(verifyUserInput);
+			String verifyUserResponse = piqTxHandler.verifyUserHandler(verifyUserInput);
 			
 			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -55,7 +55,7 @@ public class PiqCallbackController {
 		
 		try {
 			AuthorizeTxInput authorizeTxInput = new AuthorizeTxInput(indata);
-			String authorizeTxResponse = rh.authorizeTxHandler(authorizeTxInput);
+			String authorizeTxResponse = piqTxHandler.authorizeTxHandler(authorizeTxInput);
 			
 			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -78,7 +78,7 @@ public class PiqCallbackController {
 		
 		try {
 			TransferTxInput transferTxinput = new TransferTxInput(indata);
-			String transferTxResponse = rh.transferTxHandler(transferTxinput);
+			String transferTxResponse = piqTxHandler.transferTxHandler(transferTxinput);
 			
 			response.setContentType("application/json");
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -102,7 +102,7 @@ public class PiqCallbackController {
 		try {
 			response.setContentType("application/json");
 			CancelTxInput cancelTxInput = new CancelTxInput(indata);
-			String cancelTxResponse = rh.cancelTxHandler(cancelTxInput);
+			String cancelTxResponse = piqTxHandler.cancelTxHandler(cancelTxInput);
 			
 			response.setStatus(HttpServletResponse.SC_OK);
 			response.getWriter().write(cancelTxResponse);
