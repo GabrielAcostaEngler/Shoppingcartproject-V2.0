@@ -3,10 +3,12 @@ package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 public class PiqValidateObject {
 	
 	
-	boolean success;
-	String resultMessage = "";
+	private boolean success;
+	private String resultMessage = "";
 	
 	final String ERROR_USERID_DOES_NOT_MATCH = "ERROR_USERID_DOES_NOT_MATCH";
+	final String ERROR_NOT_ENOUGH_CURRENCY = "ERROR_NOT_ENOUGH_CURRENCY";
+	final String ERROR_TXCY_DOES_NOT_MATCH_BALANCECY = "ERROR_TXCY_DOES_NOT_MATCH_BALANCECY";
 
 
 	public PiqValidateObject() {
