@@ -28,46 +28,73 @@ public class PiqCallbackValidator {
 
 	}
 
-	public boolean validateAutorizeTxRequest(SiteUser user, AuthorizeTxInput indata) {
+	public PiqValidateObject validateAutorizeTxRequest(SiteUser user, AuthorizeTxInput indata, PiqValidateObject pvo) {
 
-		if (indata.getUserId().equals(user.getUserId().toString()) && indata.getTxAmount() <= user.getBalance()) {
+		if (!indata.getUserId().equals(user.getUserId().toString())) {
 
-			return true;
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_USERID_DOES_NOT_MATCH);
+			
+			return pvo;
+
+		} else if(!(indata.getTxAmount() <= user.getBalance())){
+			
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_NOT_ENOUGH_CURRENCY);
+
+			return pvo;
+
+		} else if(!indata.getTxAmountCy().equals(user.getBalanceCy())) {
+			
+			
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_TXCY_DOES_NOT_MATCH_BALANCECY);
+			
+		} else
+			
+			pvo.setSuccess(true);
+			
+			return pvo;
+
+	}
+
+	public PiqValidateObject validateTransferTxRequest(SiteUser user, TransferTxInput indata, PiqValidateObject pvo) {
+
+		if (!indata.getUserId().equals(user.getUserId().toString())) {
+
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_USERID_DOES_NOT_MATCH);
+			
+			return pvo;
+
+		} else if(!indata.getTxAmountCy().equals(user.getBalanceCy())){
+			
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_TXCY_DOES_NOT_MATCH_BALANCECY);
+
+			return pvo;
 
 		} else {
-
-			return false;
-
+			
+			pvo.setSuccess(true);
+			
+			return pvo;
 		}
 
 	}
 
-	public boolean validateTransferTxRequest(SiteUser user, TransferTxInput indata) {
+	public PiqValidateObject validateCancelTxRequest(SiteUser user, CancelTxInput indata, PiqValidateObject pvo) {
 
-		if (indata.getUserId().equals(user.getUserId().toString())
-				&& indata.getTxAmountCy().equals(user.getBalanceCy())) {
+		if (!indata.getUserId().equals(user.getUserId().toString())) {
 
-			return true;
+			pvo.setSuccess(false);
+			pvo.setResultMessage(pvo.ERROR_USERID_DOES_NOT_MATCH);
+			return pvo;
 
-		} else {
+		} else
 
-			return false;
-
-		}
-
-	}
-
-	public boolean validateCancelTxRequest(SiteUser user, CancelTxInput indata) {
-
-		if (indata.getUserId().equals(user.getUserId().toString())) {
-
-			return true;
-
-		} else {
-
-			return false;
-
-		}
+			pvo.setSuccess(true);
+			return pvo;
 
 	}
 
