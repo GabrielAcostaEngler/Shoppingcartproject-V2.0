@@ -42,9 +42,7 @@ public class ViewController {
 	
 	@RequestMapping(value="/registeredusers", method = RequestMethod.GET)
 	public String listedUsersPage(Model model) {
-		
-		//model.addAttribute("list",usd.mockDB.getRegisteredUsers().toString());
-		
+				
 		return"registeredusers";
 	}
 	

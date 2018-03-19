@@ -14,6 +14,7 @@ public class PiqTxHandler {
 	@Autowired
 	UserDao userDao;
 	
+	
 	private PiqCallbackValidator callbackValid = new PiqCallbackValidator();
 	private PiqValidateObject pvo = new PiqValidateObject();
 	private TxCmdHandler cmdHandler = new TxCmdHandler();
@@ -24,11 +25,13 @@ public class PiqTxHandler {
 	public PiqTxHandler() {
 
 	}
-
+	
+	
+	
 	public String verifyUserHandler(VerifyUserInput indata) {
 		
 		cmdHandler.addVerifyUserCmd(indata);
-
+		
 		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
 	
 		if (callbackValid.validateVerifyUserRequest(user, indata, pvo).isSuccess()) {

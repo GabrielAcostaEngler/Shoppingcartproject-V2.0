@@ -71,6 +71,18 @@ public class SiteUser {
 	@NotBlank
 	private String balanceCy;
 	
+	@Column(name="AccountNotExpired")
+	private boolean isAccountNonExpired;
+	
+	@Column(name="AccountNotLocked")
+	private boolean isAccountNonLocked;
+	
+	@Column(name="AccountCredsNotExpired")
+	private boolean isCredentialsNonExpired;
+	
+	@Column(name="AccountEnabled")
+	private boolean isEnabled;
+	
 	
 	//constructor
 	
@@ -120,6 +132,8 @@ public class SiteUser {
 	}
 
 	// getters
+	
+	
 	
 	public Long getUserId() {
 		return userId;
@@ -175,6 +189,22 @@ public class SiteUser {
 
 	public String getBalanceCy() {
 		return balanceCy;
+	}
+	
+	public boolean isAccountNonExpired() {
+		return isAccountNonExpired;
+	}
+
+	public boolean isAccountNonLocked() {
+		return isAccountNonLocked;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return isCredentialsNonExpired;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
 	}
 	
 
@@ -235,6 +265,22 @@ public class SiteUser {
 
 	public void setBalanceCy(String balanceCy) {
 		this.balanceCy = balanceCy;
+	}
+
+	public void setAccountNonExpired(boolean isAccountNonExpired) {
+		this.isAccountNonExpired = isAccountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean isAccountNonLocked) {
+		this.isAccountNonLocked = isAccountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean isCredentialsNonExpired) {
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 	// toString

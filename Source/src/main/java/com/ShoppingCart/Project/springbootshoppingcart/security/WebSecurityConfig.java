@@ -26,7 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		//@formatter:off
-		
 		http
 			.authorizeRequests()
 				.antMatchers(
@@ -59,7 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login");
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
-		
 		//@formatter:on
 
 	}
@@ -71,8 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.inMemoryAuthentication()
 		.withUser("username")
 		.password("password")
-		.roles("USER");
-		
+		.roles("USER");	
 		//@formatter:on
 	}
 

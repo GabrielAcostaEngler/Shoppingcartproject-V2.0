@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
 
 	public SiteUser getCurrentSiteUser() {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();	
 		String name = user.getUsername();
 		SiteUser siteUser = userDao.findByEmail(name);
 
