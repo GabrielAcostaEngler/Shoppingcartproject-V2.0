@@ -32,6 +32,7 @@ public class TransferTxInput {
         JsonNode node = mapper.readValue(input, JsonNode.class);
 		
 		this.userId = node.get("userId").asText();
+		this.authCode = node.get("authCode").asText();
 		this.txAmount = node.get("txAmount").asDouble();
 		this.txAmountCy = node.get("txAmountCy").asText();
 		this.txPspAmount = node.get("txPspAmount").asText();
