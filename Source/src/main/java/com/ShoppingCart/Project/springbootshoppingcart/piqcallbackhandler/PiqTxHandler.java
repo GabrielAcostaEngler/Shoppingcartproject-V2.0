@@ -14,6 +14,9 @@ public class PiqTxHandler {
 	@Autowired
 	UserDao userDao;
 	
+	@Autowired
+	PiqTxDao piqTxDao;
+	
 	
 	private PiqCallbackValidator callbackValid = new PiqCallbackValidator();
 	private PiqValidateObject pvo = new PiqValidateObject();
@@ -31,41 +34,79 @@ public class PiqTxHandler {
 	public String verifyUserHandler(VerifyUserInput indata) {
 		
 		cmdHandler.addVerifyUserCmd(indata);
-		
+		String response;
 		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
 	
 		if (callbackValid.validateVerifyUserRequest(user, indata, pvo).isSuccess()) {
 			
-			return piqJsonResponse.verifyUserSuccess(user);
+			response = piqJsonResponse.verifyUserSuccess(user);
+			cmdHandler.addVerifyUserRespCmd(response);
+			
+			return response;
 			
 		} else {
+			
+			response = piqJsonResponse.verifyUserFailed(user, indata, pvo);
 
-			return piqJsonResponse.verifyUserFailed(user, indata, pvo);
+			return response;
 			
 		}
 	}
 
 	public String authorizeTxHandler(AuthorizeTxInput indata) {
 		
-		VerifyUserInput userInput = cmdHandler.getLatestCmd();
+		VerifyUserInput verifyUserData = cmdHandler.getLatestVerifyUserCmd();
+		String verifyUserRespData = cmdHandler.getLatestVerifyUserRespCmd();
 		
-		System.out.println(userInput.toString());
+		PiqTx piqTx = new PiqTx();
+		piqTx.setUserId(verifyUserData.getUserId());
+		piqTx.setSessionId(verifyUserData.getSessionId());
+		piqTx.setTxAmount(indata.getTxAmount());
+		piqTx.setTxAmountCy(indata.getTxAmountCy());
+		piqTx.setPiqTxId(indata.getTxId());
+		piqTx.setTxTypeId(indata.getTxTypeId());
+		piqTx.setTxName(indata.getTxName());
+		piqTx.setProvider(indata.getProvider());
+		piqTx.setVerifyUserResponse(verifyUserRespData);
+		piqTxDao.save(piqTx);
 		
+		String response;
 		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
 
 
 		if (callbackValid.validateAutorizeTxRequest(user, indata, pvo).isSuccess()) {
+			
+			response = piqJsonResponse.authorizeTxSuccess(user,piqTx);
+		
+			piqTx.setAuthorizeTxResponse(response);
+			piqTxDao.save(piqTx);
 
-			return piqJsonResponse.authorizeTxSuccess(user);
+			return response;
 
 		} else {
-
-			return piqJsonResponse.authorizeTxFailed(user, pvo);
+			
+			response = piqJsonResponse.authorizeTxFailed(user, pvo);
+			
+			piqTx.setAuthorizeTxResponse(response);
+			piqTxDao.save(piqTx);
+			
+			return response;
 		}
 	}
 
 	public String transferTxHandler(TransferTxInput indata) {
+		PiqTx piqTx = piqTxDao.findByPiqTxId(indata.getTxId());
+		
+		piqTx.setAuthCode(indata.getAuthCode());
+		piqTx.setTxPspAmount(indata.getTxPspAmount());
+		piqTx.setTxPspAmountCy(indata.getTxPspAmountCy());
+		piqTx.setFee(indata.getFee());
+		piqTx.setFeeCy(indata.getFeeCy());
+		piqTx.setTxRefId(indata.getTxRefId());
+		
+		piqTxDao.save(piqTx);
 
+		String response;
 		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
 		Double balanceAfterTransaction;
 
@@ -74,12 +115,23 @@ public class PiqTxHandler {
 			balanceAfterTransaction = user.getBalance() + indata.getTxAmount();
 			user.setBalance(balanceAfterTransaction);
 			userDao.save(user);
+			
+			response = piqJsonResponse.transferTxSucess(user, indata, piqTx);
+			
+			piqTx.setTransferTxResponse(response);
+			piqTxDao.save(piqTx);
+			
 
-			return piqJsonResponse.transferTxSucess(user, indata);
+			return response;
 
 		} else {
 
-			return piqJsonResponse.transferTxFailed(user, indata, pvo);
+			response = piqJsonResponse.transferTxFailed(user, indata, pvo);
+			
+			piqTx.setTransferTxResponse(response);
+			piqTxDao.save(piqTx);
+			
+			return response;
 
 		}
 

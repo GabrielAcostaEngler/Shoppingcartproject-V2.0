@@ -54,7 +54,7 @@ public class PiqJsonResponseHandler {
 	}
 	
 	
-	public String authorizeTxSuccess(SiteUser user) {
+	public String authorizeTxSuccess(SiteUser user, PiqTx piqtx) {
 		
 		String response;
 		JsonObject jsonobj = new JsonObject();
@@ -62,7 +62,7 @@ public class PiqJsonResponseHandler {
 
 		jsonobj.addProperty("userId", user.getUserId());
 		jsonobj.addProperty("success", true);
-		jsonobj.addProperty("merchantTxId",1);
+		jsonobj.addProperty("merchantTxId",piqtx.getTxId());
 		jsonobj.addProperty("authCode", authCode.toString());
 
 		response = new Gson().toJson(jsonobj);
@@ -91,17 +91,16 @@ public class PiqJsonResponseHandler {
 	
 	
 	
-	public String transferTxSucess(SiteUser user, TransferTxInput indata) {
+	public String transferTxSucess(SiteUser user, TransferTxInput indata, PiqTx piqTx) {
 		
 		String response;
-		UUID merchantTxId = UUID.randomUUID();
 		
 		JsonObject jsonobj = new JsonObject();
 
 		jsonobj.addProperty("userId", user.getUserId());
 		jsonobj.addProperty("success", true);
 		jsonobj.addProperty("txId", indata.getTxId());
-		jsonobj.addProperty("merchantTxId", merchantTxId.toString());
+		jsonobj.addProperty("merchantTxId", piqTx.getTxId());
 
 		response = new Gson().toJson(jsonobj);
 

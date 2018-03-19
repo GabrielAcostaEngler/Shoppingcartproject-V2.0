@@ -11,11 +11,13 @@ public class PiqTx {
 	
 	@Id
 	@GeneratedValue
-	private int txId;
+	private Long txId;
+	
 	private String userId;
 	private String sessionId;
 	private Double txAmount;
 	private String txAmountCy;
+	private String piqTxId;
 	private int txTypeId;
 	private String txName;
 	private String provider;
@@ -25,10 +27,16 @@ public class PiqTx {
 	private String fee;
 	private String feeCy;
 	private String txRefId;
+	private String verifyUserResponse;
+	private String authorizeTxResponse;
+	private String transferTxResponse;
+	private String cancelTxResponse;
+
+	
 	
 
 	//getters
-	public int getTxId() {
+	public Long getTxId() {
 		return txId;
 	}
 	public String getUserId() {
@@ -42,6 +50,9 @@ public class PiqTx {
 	}
 	public String getTxAmountCy() {
 		return txAmountCy;
+	}
+	public String getPiqTxId() {
+		return piqTxId;
 	}
 	public int getTxTypeId() {
 		return txTypeId;
@@ -70,11 +81,27 @@ public class PiqTx {
 	public String getTxRefId() {
 		return txRefId;
 	}
+	
+	public String getVerifyUserResponse() {
+		return verifyUserResponse;
+	}
+	
+	public String getAuthorizeTxResponse() {
+		return authorizeTxResponse;
+	}
+	
+	public String getTransferTxResponse() {
+		return transferTxResponse;
+	}
+	
+	public String getCancelTxResponse() {
+		return cancelTxResponse;
+	}
 
 	
 	//setters
 	
-	public void setTxId(int txId) {
+	public void setTxId(Long txId) {
 		this.txId = txId;
 	}
 	public void setUserId(String userId) {
@@ -88,6 +115,9 @@ public class PiqTx {
 	}
 	public void setTxAmountCy(String txAmountCy) {
 		this.txAmountCy = txAmountCy;
+	}
+	public void setPiqTxId(String piqTxId) {
+		this.piqTxId = piqTxId;
 	}
 	public void setTxTypeId(int txTypeId) {
 		this.txTypeId = txTypeId;
@@ -116,6 +146,22 @@ public class PiqTx {
 	public void setTxRefId(String txRefId) {
 		this.txRefId = txRefId;
 	}
+	public void setVerifyUserResponse(String verifyUserResponse) {
+		this.verifyUserResponse = verifyUserResponse;
+	}
+	
+	public void setAuthorizeTxResponse(String authorizeTxResponse) {
+		this.authorizeTxResponse = authorizeTxResponse;
+	}
+	
+	public void setTransferTxResponse(String transferTxResponse) {
+		this.transferTxResponse = transferTxResponse;
+	}
+	
+	public void setCancelTxResponse(String cancelTxResponse) {
+		this.cancelTxResponse = cancelTxResponse;
+	}
+
 	
 
 }
