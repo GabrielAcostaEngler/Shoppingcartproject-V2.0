@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head-css"></head>
+
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+
+	<table class="table table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Amount</th>
+				<th scope="col">Type</th>
+				<th scope="col">Provider</th>
+				<th scope="col">Name</th>
+			</tr>
+		</thead>
+		<tr  th:each="piqTx : ${txHistory}">
+			<td th:text="${piqTx.txAmount}"></td>
+			<td th:text="${piqTx.txTypeId}"></td>
+			<td th:text="${piqTx.provider}"></td>
+			<td th:text="${piqTx.txName}"></td>
+			<td th:text="${piqTx.txAmountCy}"></td>
+		</tr>
+	</table>
+
+
+	<div th:replace="fragments/header :: footer"></div>
+</body>
+
+
+</html>
