@@ -1,6 +1,8 @@
 package com.ShoppingCart.Project.springbootshoppingcart.shoppingcartappcontroller;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
 import com.ShoppingCart.Project.springbootshoppingcart.UserService;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTx;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTxService;
 
 @Controller
 public class ViewController {
@@ -20,6 +24,11 @@ public class ViewController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	PiqTxService piqTxService;
+	
+	
 	
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -39,12 +48,6 @@ public class ViewController {
 	
 	
 	//-----------------------------------------
-	
-	@RequestMapping(value="/registeredusers", method = RequestMethod.GET)
-	public String listedUsersPage(Model model) {
-				
-		return"registeredusers";
-	}
 	
 
 	
@@ -78,6 +81,21 @@ public class ViewController {
 		model.addAttribute("piqdepositurl", piqCashierDepositUrl);
 		
 		return "paymentpage";
+	}
+	
+	
+	
+	@RequestMapping(value="/txhistory", method = RequestMethod.GET)
+	public String showTxHistory(Model model, HttpServletRequest request,HttpServletResponse response) {
+		
+		SiteUser siteUser = userService.getCurrentSiteUser();
+		ArrayList<PiqTx> txHistory = new ArrayList<PiqTx>();
+		
+		txHistory = piqTxService.getTxHistory(siteUser.getUserId().toString());
+		
+		model.addAttribute("txHistory", txHistory);
+		
+		return "txhistory";
 	}
 
 }
