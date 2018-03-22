@@ -95,6 +95,7 @@ public class PiqTxHandler {
 	}
 
 	public String transferTxHandler(TransferTxInput indata) {
+		
 		PiqTx piqTx = piqTxDao.findByPiqTxId(indata.getTxId());
 		
 		piqTx.setAuthCode(indata.getAuthCode());
@@ -139,15 +140,24 @@ public class PiqTxHandler {
 
 	public String cancelTxHandler(CancelTxInput indata) {
 
+		PiqTx piqTx = piqTxDao.findByPiqTxId(indata.getTxId());
+		
+		String response;
 		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
 
 		if (callbackValid.validateCancelTxRequest(user, indata, pvo).isSuccess()) {
 
-			return piqJsonResponse.cancelTxSuccess(user);
+			response = piqJsonResponse.cancelTxSuccess(user);
+			piqTx.setCancelTxResponse(response);
+			
+			return response;
 
 		} else {
 			
-			return piqJsonResponse.cancelTxFailed(user, pvo);
+			response = piqJsonResponse.cancelTxFailed(user, pvo);
+			piqTx.setCancelTxResponse(response);
+			
+			return response;
 		}
 
 	}
