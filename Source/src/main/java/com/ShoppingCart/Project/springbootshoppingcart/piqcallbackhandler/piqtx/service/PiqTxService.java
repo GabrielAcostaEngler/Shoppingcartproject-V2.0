@@ -1,9 +1,12 @@
-package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
+package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.service;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.PiqTx;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.dao.PiqTxDao;
 
 
 @Service
@@ -14,6 +17,13 @@ public class PiqTxService {
 	
 	public void saveTx(PiqTx piqTx) {
 		piqTxDao.save(piqTx);
+	}
+	
+	public PiqTx findByPiqTxId(String piqTxId) {
+		
+		PiqTx piqTx = piqTxDao.findByPiqTxId(piqTxId);
+		
+		return piqTx;
 	}
 	
 	public ArrayList<PiqTx> getTxHistory(String userId){
