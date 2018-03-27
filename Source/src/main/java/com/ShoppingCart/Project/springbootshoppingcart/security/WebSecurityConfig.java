@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.ShoppingCart.Project.springbootshoppingcart.UserService;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -65,12 +65,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		
-		//@formatter:off
+		/*//@formatter:off
 		auth.inMemoryAuthentication()
 		.withUser("username")
 		.password("password")
 		.roles("USER");	
-		//@formatter:on
+		//@formatter:on*/
 	}
 
 	@Override
