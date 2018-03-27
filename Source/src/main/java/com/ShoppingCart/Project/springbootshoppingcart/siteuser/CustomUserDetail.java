@@ -1,4 +1,4 @@
-package com.ShoppingCart.Project.springbootshoppingcart;
+package com.ShoppingCart.Project.springbootshoppingcart.siteuser;
 
 import java.util.Collection;
 import java.util.Set;

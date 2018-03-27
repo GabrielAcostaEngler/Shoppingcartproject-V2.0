@@ -12,10 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
-import com.ShoppingCart.Project.springbootshoppingcart.UserService;
-import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTx;
-import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTxService;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.PiqTx;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.service.PiqTxService;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
 
 @Controller
 public class ViewController {
