@@ -3,39 +3,39 @@ package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
-import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.*;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.PiqTx;
+import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.piqtx.service.PiqTxService;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
 
 
 @Component
 public class PiqTxHandler {
 
 	@Autowired
-	UserDao userDao;
+	UserService userService;
 	
 	@Autowired
-	PiqTxDao piqTxDao;
+	PiqTxService piqTxService;
 	
 	
 	private PiqCallbackValidator callbackValid = new PiqCallbackValidator();
 	private PiqValidateObject pvo = new PiqValidateObject();
 	private TxCmdHandler cmdHandler = new TxCmdHandler();
 	private PiqJsonResponseHandler piqJsonResponse = new PiqJsonResponseHandler();
-	
 
 
 	public PiqTxHandler() {
-
+		
 	}
-	
 	
 	
 	public String verifyUserHandler(VerifyUserInput indata) {
 		
 		cmdHandler.addVerifyUserCmd(indata);
 		String response;
-		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userService.findByUserId(Long.parseLong(indata.getUserId()));
 	
 		if (callbackValid.validateVerifyUserRequest(user, indata, pvo).isSuccess()) {
 			
@@ -68,10 +68,10 @@ public class PiqTxHandler {
 		piqTx.setTxName(indata.getTxName());
 		piqTx.setProvider(indata.getProvider());
 		piqTx.setVerifyUserResponse(verifyUserRespData);
-		piqTxDao.save(piqTx);
+		piqTxService.saveTx(piqTx);
 		
 		String response;
-		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userService.findByUserId(Long.parseLong(indata.getUserId()));
 
 
 		if (callbackValid.validateAutorizeTxRequest(user, indata, pvo).isSuccess()) {
@@ -79,7 +79,8 @@ public class PiqTxHandler {
 			response = piqJsonResponse.authorizeTxSuccess(user,piqTx);
 		
 			piqTx.setAuthorizeTxResponse(response);
-			piqTxDao.save(piqTx);
+			piqTx.setTxSuccess("SUCCESS");
+			piqTxService.saveTx(piqTx);
 
 			return response;
 
@@ -88,7 +89,9 @@ public class PiqTxHandler {
 			response = piqJsonResponse.authorizeTxFailed(user, pvo);
 			
 			piqTx.setAuthorizeTxResponse(response);
-			piqTxDao.save(piqTx);
+			piqTx.setTxSuccess("FAILED");
+			piqTx.setTxMsg(pvo.getResultMessage());
+			piqTxService.saveTx(piqTx);
 			
 			return response;
 		}
@@ -96,7 +99,7 @@ public class PiqTxHandler {
 
 	public String transferTxHandler(TransferTxInput indata) {
 		
-		PiqTx piqTx = piqTxDao.findByPiqTxId(indata.getTxId());
+		PiqTx piqTx = piqTxService.findByPiqTxId(indata.getTxId());
 		
 		piqTx.setAuthCode(indata.getAuthCode());
 		piqTx.setTxPspAmount(indata.getTxPspAmount());
@@ -105,22 +108,23 @@ public class PiqTxHandler {
 		piqTx.setFeeCy(indata.getFeeCy());
 		piqTx.setTxRefId(indata.getTxRefId());
 		
-		piqTxDao.save(piqTx);
+		piqTxService.saveTx(piqTx);
 
 		String response;
-		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userService.findByUserId(Long.parseLong(indata.getUserId()));
 		Double balanceAfterTransaction;
 
 		if (callbackValid.validateTransferTxRequest(user, indata, pvo).isSuccess()) {
 
 			balanceAfterTransaction = user.getBalance() + indata.getTxAmount();
 			user.setBalance(balanceAfterTransaction);
-			userDao.save(user);
+			userService.saveUser(user);
 			
 			response = piqJsonResponse.transferTxSucess(user, indata, piqTx);
 			
 			piqTx.setTransferTxResponse(response);
-			piqTxDao.save(piqTx);
+			piqTx.setTxSuccess("SUCCESS");
+			piqTxService.saveTx(piqTx);
 			
 
 			return response;
@@ -130,7 +134,9 @@ public class PiqTxHandler {
 			response = piqJsonResponse.transferTxFailed(user, indata, pvo);
 			
 			piqTx.setTransferTxResponse(response);
-			piqTxDao.save(piqTx);
+			piqTx.setTxSuccess("FAILED");
+			piqTx.setTxMsg(pvo.getResultMessage());
+			piqTxService.saveTx(piqTx);
 			
 			return response;
 
@@ -140,10 +146,10 @@ public class PiqTxHandler {
 
 	public String cancelTxHandler(CancelTxInput indata) {
 
-		PiqTx piqTx = piqTxDao.findByPiqTxId(indata.getTxId());
+		PiqTx piqTx = piqTxService.findByPiqTxId(indata.getTxId());
 		
 		String response;
-		SiteUser user= userDao.findByUserId(Long.parseLong(indata.getUserId()));
+		SiteUser user= userService.findByUserId(Long.parseLong(indata.getUserId()));
 
 		if (callbackValid.validateCancelTxRequest(user, indata, pvo).isSuccess()) {
 
@@ -155,6 +161,8 @@ public class PiqTxHandler {
 		} else {
 			
 			response = piqJsonResponse.cancelTxFailed(user, pvo);
+			piqTx.setTxSuccess("FAILED");
+			piqTx.setTxMsg(pvo.getResultMessage());
 			piqTx.setCancelTxResponse(response);
 			
 			return response;

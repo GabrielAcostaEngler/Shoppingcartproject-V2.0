@@ -1,4 +1,4 @@
-package com.ShoppingCart.Project.springbootshoppingcart;
+package com.ShoppingCart.Project.springbootshoppingcart.siteuser.service;
 
 import java.util.List;
 
@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.dao.UserDao;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -20,8 +23,14 @@ public class UserService implements UserDetailsService {
 	
 	
 
-	public void register(SiteUser user) {
+	public void saveUser(SiteUser user) {
 		userDao.save(user);
+	}
+	
+	public SiteUser findByUserId(Long userId) {
+		SiteUser user = userDao.findByUserId(userId);
+		
+		return user;
 	}
 
 	public SiteUser getCurrentSiteUser() {

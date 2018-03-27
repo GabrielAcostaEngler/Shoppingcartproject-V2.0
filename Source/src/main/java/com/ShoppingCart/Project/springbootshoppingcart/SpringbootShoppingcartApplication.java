@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
+
 @SpringBootApplication
 @EnableJpaRepositories
 public class SpringbootShoppingcartApplication extends SpringBootServletInitializer {
@@ -31,7 +34,7 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 	CommandLineRunner runner() {
 		
 		return args -> {
-			userService.register(new SiteUser("TestSEK",
+			userService.saveUser(new SiteUser("TestSEK",
 									"testsson",
 									"testvgn123",
 									"testcity",
@@ -45,7 +48,7 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 			
 			
 			
-			userService.register(new SiteUser("TestEUR",
+			userService.saveUser(new SiteUser("TestEUR",
 									"testsson2",
 									"testvgn123",
 									"testcity2",
@@ -56,7 +59,7 @@ public class SpringbootShoppingcartApplication extends SpringBootServletInitiali
 									"1990-01-02",
 									"0760000002"));
 			
-			userService.register(new SiteUser("TestUSD",
+			userService.saveUser(new SiteUser("TestUSD",
 									"testsson2",
 									"testvgn123",
 									"testcity2",

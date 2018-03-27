@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ShoppingCart.Project.springbootshoppingcart.UserDao;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.PiqTxHandler;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
 
 
 @RequestMapping("/paymentiq")
@@ -25,8 +25,9 @@ public class PiqCallbackController {
 
 	@Autowired
 	private PiqTxHandler piqTxHandler;
+	
 	@Autowired
-	UserDao userDao;
+	UserService userService;
 	
 	
 	

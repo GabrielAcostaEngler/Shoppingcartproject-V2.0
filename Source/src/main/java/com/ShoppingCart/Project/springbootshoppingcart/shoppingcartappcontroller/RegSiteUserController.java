@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
-import com.ShoppingCart.Project.springbootshoppingcart.UserService;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.service.UserService;
 
 @Controller
 public class RegSiteUserController {
@@ -33,7 +33,7 @@ public class RegSiteUserController {
 	public String registerUserRequest(Model model,@ModelAttribute(value="user") @Valid SiteUser user, BindingResult result) {
 
 		if (!result.hasErrors()) {
-			userService.register(user);
+			userService.saveUser(user);
 			System.out.println("\n" + user.toString() + "\n");
 
 			return "registrationsuccess";
