@@ -1,10 +1,10 @@
 package com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler;
 
-import com.ShoppingCart.Project.springbootshoppingcart.SiteUser;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.AuthorizeTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.CancelTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.TransferTxInput;
 import com.ShoppingCart.Project.springbootshoppingcart.piqcallbackhandler.callbackinput.VerifyUserInput;
+import com.ShoppingCart.Project.springbootshoppingcart.siteuser.SiteUser;
 
 public class PiqCallbackValidator {
 
