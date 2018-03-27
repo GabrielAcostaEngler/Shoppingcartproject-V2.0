@@ -11,6 +11,8 @@
 		<thead class="thead-dark">
 			<tr>
 				<th scope="col">Amount</th>
+				<th scope="col">AmountCy</th>
+				<th scope="col">State</th>
 				<th scope="col">Type</th>
 				<th scope="col">Provider</th>
 				<th scope="col">Name</th>
@@ -18,10 +20,11 @@
 		</thead>
 		<tr  th:each="piqTx : ${txHistory}">
 			<td th:text="${piqTx.txAmount}"></td>
+			<td th:text="${piqTx.txAmountCy}"></td>
+			<td th:text="${piqTx.txSuccess}"></td>
 			<td th:text="${piqTx.txTypeId}"></td>
 			<td th:text="${piqTx.provider}"></td>
 			<td th:text="${piqTx.txName}"></td>
-			<td th:text="${piqTx.txAmountCy}"></td>
 		</tr>
 	</table>
 
