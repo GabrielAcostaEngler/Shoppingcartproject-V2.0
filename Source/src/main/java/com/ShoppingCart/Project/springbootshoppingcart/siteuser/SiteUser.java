@@ -1,4 +1,4 @@
-package com.ShoppingCart.Project.springbootshoppingcart;
+package com.ShoppingCart.Project.springbootshoppingcart.siteuser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -105,6 +105,9 @@ public class SiteUser {
 		this.mobile = mobile;
 		this.balanceCy = "";
 		this.balance = 0.00;
+		this.isAccountNonLocked = true;
+		this.isAccountNonExpired = true;
+		this.isEnabled = true;
 		
 		switch (country) {
 
